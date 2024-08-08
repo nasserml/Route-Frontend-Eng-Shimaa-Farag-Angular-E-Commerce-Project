@@ -11,5 +11,6 @@ module.exports = {
     require('flowbite/plugin') // add this line
 
   ],
+  darkMode: 'class'
 }
 
