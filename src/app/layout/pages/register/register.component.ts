@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +20,21 @@ export class RegisterComponent {
 
   });
 
-  sendData(){
-    console.log(this.registerForm.value);
+  constructor(private _auth:AuthService){}
+
+  sendData():void{
+    
+    this._auth.register(this.registerForm.value).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (err) => {
+        console.log('error',err);
+      },
+      complete: () =>{
+        console.log('complete')
+      }
+    })
 
   }
 
