@@ -62,3 +62,74 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+
+
+// Navbar Style css Rules 
+@layer components{
+
+    .tw-navbar{
+
+        @apply max-w-screen-xl flex max-md:flex-wrap  items-center justify-between gap-2  py-4 max-lg:text-sm
+    }
+
+    .tw-nav-logo{
+        @apply flex items-center space-x-3 rtl:space-x-reverse
+    }
+
+    .tw-nav-items{
+        @apply flex md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse
+    }
+
+    .tw-nav-link{
+        @apply text-gray-900    font-medium rounded-lg text-sm px-1 py-2 text-center  
+    }
+
+    .tw-nav-social-link{
+        @apply text-gray-900   focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 text-center   dark:focus:ring-green-800
+    }
+
+    .tw-open-menu{
+        @apply inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
+    }
+
+    .tw-nav-ul{
+        @apply flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700
+    }
+
+    .tw-nav-li-link{
+        @apply block py-2 px-3 md:p-0 text-gray-900 bg-green-700 rounded md:bg-transparent md:text-gray-900 md:dark:text-green-500 hover:text-green-700
+    }
+
+}
+
+
+// form Styles css rules
+@layer components{
+    .tw-form{
+        @apply w-2/3 mx-auto my-6
+    }
+
+    .tw-form-label{
+        @apply block mb-2 text-base font-bold text-gray-900  dark:text-white
+    }
+
+    .tw-form-input{
+        @apply bg-gray-50 font-bold border border-gray-300 text-gray-900  text-base rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500
+    }
+
+    .tw-form-btn-submit{
+        @apply text-white ms-auto block disabled:opacity-50 disabled:hover:bg-main-color-0aad0a bg-main-color-0aad0a hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800
+    }
+
+    .tw-alert{
+        @apply mt-2 p-4 mb-4 text-base text-red-900 rounded-lg bg-red-200 dark:bg-gray-800  dark:text-red-400
+    }
+
+    .tw-danger{
+        @apply mt-2 p-4 mb-4 text-base text-red-800 rounded-lg bg-red-50 dark:bg-gray-800  dark:text-red-400
+    }
+
+}
+
+
+
