@@ -9,8 +9,8 @@
         <form (ngSubmit)="sendData()" [formGroup]="registerForm" class="tw-form">
 
 
-            @if (errMsg) {
-                <div class="tw-alert" role="alert"><span class="font-extrabold text-xl">{{errMsg}}</span></div>
+            @if (getErrMsg()) {
+                <div class="tw-alert" role="alert"><span class="font-extrabold text-xl">{{getErrMsg()}}</span></div>
 
             }
 
@@ -34,7 +34,7 @@
 
                     @if( registerForm.get('name')?.errors?.['maxlength'] ) {
                         
-                        <div class=" tw-danger" role="alert"><span class="font-bold">Name maxLEngth is 10 xhar</span></div>
+                        <div class=" tw-danger" role="alert"><span class="font-bold">Name maxLEngth is 10 char</span></div>
                     }
 
     
@@ -140,7 +140,7 @@
             </div>
           
            
-                @if (isLoading) {
+                @if (getIsLoading()) {
                      <button [disabled]="true"  class="tw-form-btn-submit">
                         
                          <i class="fa-solid fa-spinner fa-spin"></i>

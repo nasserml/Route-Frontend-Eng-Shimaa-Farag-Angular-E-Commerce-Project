@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { ValidationService } from '../../../shared/services/validation.service';
+import { LoadingService } from '../../../shared/services/loading.service';
+import { ErrorService } from '../../../shared/services/error.service';
 
 @Component({
   selector: 'app-register',
@@ -10,25 +13,27 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
-  errMsg:string ='';
-  isLoading:boolean = false;
 
-  registerForm:FormGroup = new FormGroup({
-    name:new FormControl(null,[Validators.required, Validators.minLength(3),Validators.maxLength(10)]),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{8}$/)]),
-    rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{8}$/)]),
-    phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[1250][0-9]{8}$/)])
+  registerForm!:FormGroup;
 
-  });
+  constructor(
+    private _auth:AuthService, 
+    private router:Router, 
+    private validationService:ValidationService,
+    private loadingService:LoadingService,
+    private errorService: ErrorService)
+    {}
 
-  constructor(private _auth:AuthService, private router:Router){}
+  ngOnInit(): void {
+   
+    this.registerForm = this.validationService.createRegisterForm();
+  }
 
 
   sendData():void{
-    this.isLoading= true;
+    this.loadingService.setLoading(true);
 
     console.log(this.registerForm)
     
@@ -38,19 +43,30 @@ export class RegisterComponent {
         if(response.message == 'success') {
 
           this.router.navigate(['/login']);
-          this.isLoading= false;
+          this.loadingService.setLoading(false);
 
         }
       },
       error: (err) => {
         console.log('error',err);
-        this.errMsg = err.error.message;
-        this.isLoading = false
+        this.errorService.setErrorMessage(err.error.message);
+        this.loadingService.setLoading(false);
       },
       complete: () =>{
         console.log('complete')
+        this.loadingService.setLoading(false);
       }
     });
   }
+
+  getIsLoading(): boolean {
+    return this.loadingService.isLoading();
+  }
+
+  getErrMsg():string{
+    return this.errorService.getErrorMessage();
+  }
+
+  
 
 }
