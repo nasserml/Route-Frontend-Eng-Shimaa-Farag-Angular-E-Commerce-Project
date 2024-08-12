@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .logout {
+        @apply bg-red-600 text-white ml-3 cursor-pointer inline-block hover:bg-red-400
+    }
+}

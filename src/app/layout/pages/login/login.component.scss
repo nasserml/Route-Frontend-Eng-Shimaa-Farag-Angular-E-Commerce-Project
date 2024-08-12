@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components{
+    .login-title{
+        @apply text-3xl text-main-color-0aad0a font-bold
+    }
+}

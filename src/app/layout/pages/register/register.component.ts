@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { ValidationService } from '../../../shared/services/validation.service';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { ErrorService } from '../../../shared/services/error.service';
+import { SendData } from '../../../shared/interface/send-data';
+import { GetErrMsg } from '../../../shared/interface/get-err-msg';
+import { GetIsLoading } from '../../../shared/interface/get-is-loading';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +16,7 @@ import { ErrorService } from '../../../shared/services/error.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, SendData, GetErrMsg, GetIsLoading {
 
 
   registerForm!:FormGroup;
