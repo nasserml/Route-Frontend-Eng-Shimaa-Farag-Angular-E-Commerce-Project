@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit , SendData, GetErrMsg, GetIsLoadin
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.loginForm = this.validationService.createLoginForm();
+
+    this.errorService.clearErrorMessage();
   }
 
   sendData(): void {

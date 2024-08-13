@@ -17,4 +17,8 @@ export class ErrorService {
     return this.errorMessage;
 
   }
+
+  clearErrorMessage():void {
+    this.errorMessage = '';
+  }
 }

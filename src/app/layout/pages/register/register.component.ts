@@ -32,6 +32,8 @@ export class RegisterComponent implements OnInit, SendData, GetErrMsg, GetIsLoad
   ngOnInit(): void {
    
     this.registerForm = this.validationService.createRegisterForm();
+
+    this.errorService.clearErrorMessage();
   }
 
 
