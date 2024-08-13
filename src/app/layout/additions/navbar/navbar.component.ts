@@ -24,7 +24,7 @@ export class NavbarComponent {
 
     this._auth.userData.subscribe(()=>{
 
-      console.log(this._auth.userData.getValue());
+      // console.log(this._auth.userData.getValue());
 
       if(this._auth.userData.getValue() == null ) {
         this.isLogin = false;

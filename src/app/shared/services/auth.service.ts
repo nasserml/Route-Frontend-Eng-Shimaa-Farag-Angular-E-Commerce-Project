@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { afterNextRender, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Environment } from '../../Base/Environment';
 import { Register } from '../interface/register';
@@ -12,7 +12,14 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 })
 export class AuthService {
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient) { 
+
+    afterNextRender(()=>{
+      if(localStorage.getItem('userToken') != null) {
+        this.userInformation();
+      }
+    })
+  }
 
   register(formData:Register):Observable<any> {
     return this._http.post(`${Environment.BASE_URL}auth/signup`, formData);
@@ -24,12 +31,11 @@ export class AuthService {
 
 
   userData:BehaviorSubject<any> = new BehaviorSubject(null);
-  // user data
   userInformation() {
     
     let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
     this.userData.next(decoded);
-    // console.log(this.userData);
+    
 
 
   }
