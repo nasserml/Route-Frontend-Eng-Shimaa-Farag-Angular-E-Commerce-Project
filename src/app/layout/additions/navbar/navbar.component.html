@@ -1,62 +1,78 @@
-
-   
-
 <div class="nav bg-gray-100">
-    <div class="container ">
-    
-        <nav class=" border-gray-200 dark:bg-gray-900">
-    
-    
+    <div class="container">
+        <nav class="border-gray-200 dark:bg-gray-900">
             <div class="tw-navbar">
                 <a routerLink="/home" class="tw-nav-logo">
                     <img src="img/freshcart-logo.svg" class="h-8" alt="FreshCart Logo" />
-                    
                 </a>
                 <div class="tw-nav-items">
-                    <a routerLink="/login" type="button" class="tw-nav-link" routerLinkActive="tw-link-active">Login</a>
 
-                    <a routerLink="/register" type="button" class="tw-nav-link" routerLinkActive="tw-link-active">Register</a>
+                    @if(!isLogin) {
 
-                    <a  type="button" class="tw-nav-link logout">Logout</a>
+                        <a routerLink="/login" type="button" class="tw-nav-link" routerLinkActive="tw-link-active">Login</a>
 
-                    <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-facebook"></i></a>
+                        <a routerLink="/register" type="button" class="tw-nav-link"
+                        routerLinkActive="tw-link-active">Register</a>
 
-                    <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-twitter"></i></a>
-
-                    <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-instagram"></i></a>
+                    }
                     
-                    <button data-collapse-toggle="navbar-cta" type="button" class="tw-open-menu" aria-controls="navbar-cta" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                    </svg>
-                </button>
+                    
+                    @if(isLogin){
+
+                        <a type="button" class="tw-nav-link logout" (click)="logout()">Logout</a>
+                        
+                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-facebook"></i></a>
+                        
+                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-twitter"></i></a>
+                        
+                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-instagram"></i></a>
+                    }
+
+
+
+                    @if (isLogin) {
+
+                        <button data-collapse-toggle="navbar-cta" type="button" class="tw-open-menu"
+                            aria-controls="navbar-cta" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 17 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M1 1h15M1 7h15M1 13h15" />
+                            </svg>
+                        </button>
+                    }
+
                 </div>
 
-                <div class=" items-center justify-between hidden w-full md:flex md:w-auto md:order-1 me-auto" id="navbar-cta">
+                @if (isLogin) {
+                    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 me-auto"
+                    id="navbar-cta">
                     <ul class="tw-nav-ul">
                         <li>
-                        <a routerLink="/home" class="tw-nav-li-link" aria-current="page" routerLinkActive="tw-link-active">Home</a>
+                            <a routerLink="/home" class="tw-nav-li-link" aria-current="page"
+                                routerLinkActive="tw-link-active">Home</a>
                         </li>
                         <li>
-                        <a routerLinkActive="tw-link-active" routerLink="/cart" class="tw-nav-li-link  ">Cart</a>
+                            <a routerLinkActive="tw-link-active" routerLink="/cart" class="tw-nav-li-link">Cart</a>
                         </li>
                         <li>
-                        <a routerLinkActive="tw-link-active" routerLink="/products" class="tw-nav-li-link  ">Products</a>
+                            <a routerLinkActive="tw-link-active" routerLink="/products"
+                                class="tw-nav-li-link">Products</a>
                         </li>
                         <li>
-                        <a routerLinkActive="tw-link-active" routerLink="/brands" class="tw-nav-li-link  ">Brands</a>
+                            <a routerLinkActive="tw-link-active" routerLink="/brands" class="tw-nav-li-link">Brands</a>
                         </li>
                         <li>
-                        <a routerLinkActive="tw-link-active" routerLink="/categories" class="tw-nav-li-link  ">Categories</a>
+                            <a routerLinkActive="tw-link-active" routerLink="/categories"
+                                class="tw-nav-li-link">Categories</a>
                         </li>
                     </ul>
                 </div>
+                }
+                
+
             </div>
         </nav>
     </div>
-
 </div>
-
-
-  

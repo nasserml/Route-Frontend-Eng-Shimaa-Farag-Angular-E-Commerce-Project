@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit , SendData, GetErrMsg, GetIsLoadin
       this._auth.login(this.loginForm.value).subscribe({
         next:(response) => {
           if(response.message == 'success') {
+            localStorage.setItem('userToken', response.token);
+            this._auth.userInformation();
             this.router.navigate(['/home']);
             this.LoadingService.setLoading(false);
           }
