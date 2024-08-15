@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+
+    .products-container {
+        @apply container mx-auto p-10 md:py-12 px-0 md:p-8 md:px-0
+    }
+
+    .products-grid{
+        @apply p-5 md:p-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 items-start
+    }
+
+}

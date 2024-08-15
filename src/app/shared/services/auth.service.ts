@@ -5,6 +5,7 @@ import { Environment } from '../../Base/Environment';
 import { Register } from '../interface/register';
 import { Login } from '../interface/login';
 import { jwtDecode, JwtPayload } from "jwt-decode";
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -12,12 +13,19 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 })
 export class AuthService {
 
-  constructor(private _http:HttpClient) { 
+  private _userData = new BehaviorSubject<any>(null)
 
-    afterNextRender(()=>{
-      if(localStorage.getItem('userToken') != null) {
-        this.userInformation();
-      }
+
+  constructor(
+    private _http:HttpClient,
+    private _userService: UserService
+    ) { 
+      
+      afterNextRender(()=>{
+        // this.initializeUser();
+        if(localStorage.getItem('userToken') != null) {
+          this.userInformation();
+        }
     })
   }
 
@@ -33,12 +41,32 @@ export class AuthService {
   userData:BehaviorSubject<any> = new BehaviorSubject(null);
   userInformation() {
     
+    
     let decoded = jwtDecode(JSON.stringify(localStorage.getItem('userToken')));
     this.userData.next(decoded);
-    
+   
+  }
 
+  logOut():void {
+    localStorage.removeItem('userToken');
+    this.userData.next(null);
+  }
+
+  getUserData(): Observable<any>{
+    return this.userData.asObservable();
+  }
+
+  private initializeUser(): void {
+
+    if(localStorage.getItem('userToken') != null) {
+      this._userService.decodeTokenAndSetUserData();
+      
+    }
 
   }
+
+
+
 }
 
 

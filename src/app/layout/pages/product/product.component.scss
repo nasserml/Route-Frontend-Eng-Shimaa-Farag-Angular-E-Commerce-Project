@@ -1,0 +1,24 @@
+@tailwind components;
+
+@layer components {
+
+    .product-section {
+        @apply p-2 overflow-hidden bg-clip-border shadow-lg shadow-green-300/40 rounded-xl bg-green-50 py-5  text-center transform duration-500 hover:-translate-y-2 cursor-pointer h-full flex flex-col justify-between
+    }
+
+    .product-img {
+        @apply w-3/4 mx-auto rounded-lg block
+    }
+
+    .product-title{
+        @apply my-5 line-clamp-1 block font-sans text-xl font-medium leading-snug tracking-normal text-gray-900 antialiased
+    } 
+
+    .product-desc{
+        @apply mb-5 line-clamp-3 mt-2 text-gray-600 text-sm
+    }
+
+    .product-add-to-cart-btn{
+        @apply p-2 px-3 bg-color-rgb-34-197-94 text-white rounded-md hover:bg-green-400 w-3/4 mx-auto
+    }
+}

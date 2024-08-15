@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -15,34 +16,35 @@ export class NavbarComponent {
 
   constructor(
     private _auth: AuthService,
-    private _router:Router
-  ){}
+    private _router:Router,
+    
+  ){
+    
+  }
 
   ngOnInit(): void {
  
     
-
-    this._auth.userData.subscribe(()=>{
-
-      // console.log(this._auth.userData.getValue());
-
-      if(this._auth.userData.getValue() == null ) {
-        this.isLogin = false;
-      } else{
-        this.isLogin = true
-      }
-
-    })
-
-    
-    
+      this._auth.getUserData().subscribe((userData)=>{
+        if(userData == null ) {
+          this.isLogin = false;
+        } else{
+          this.isLogin = true
+        }
+      })
+      
   }
 
+  logout():void{
 
-  logout(){
-    localStorage.removeItem('userToken');
+    this._auth.logOut();
     this._router.navigate(['/login']);
-    this._auth.userData.next(null);
+ 
+
+
+    // localStorage.removeItem('userToken');
+    // this._router.navigate(['/login']);
+    // this._auth.userData.next(null);
   }
 
 }

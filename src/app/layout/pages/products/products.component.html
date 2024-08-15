@@ -1,1 +1,42 @@
-<p>products works!</p>
+<section class="products-container">
+    <section
+        class="products-grid">
+        @for(product of productList; track product._id) {
+
+            <app-product [product]="product" class="h-full"></app-product>
+        }
+    </section>
+</section>
+
+
+
+
+<!-- <div class="container">
+    <div  class="flex flex-wrap gap-4  justify-center items-center ">
+
+        @for (product of productList; track product._id) {
+            <div class="w-1/6 bg-slate-100 p-3 h-full product">
+
+                <div>
+                    <img [src]="product.imageCover" [alt]="product.title">
+                    <h2 class="text-main-color-0aad0a">{{product.category.name}}</h2>
+                    <h2 class="line-clamp-1 text-green-700 my-3">{{product.title}}</h2>
+
+                    <p class="line-clamp-3">{{product.description}}</p>
+
+                    <div class="flex justify-between mt-2">
+                        <p>{{product.price}}$</p>
+                        <p><i class="fa-solid fa-star text-rating-color-ffc908"></i>{{product.ratingsAverage}}</p>
+                    </div>
+
+                </div>
+
+                <button class="btn text-white rounded-lg w-full p-3 bg-main-color-0aad0a transition-colors duration-300 hover:bg-green-400 my-2">Add To cart</button>
+                
+
+            </div>
+        }
+
+
+    </div>
+</div> -->

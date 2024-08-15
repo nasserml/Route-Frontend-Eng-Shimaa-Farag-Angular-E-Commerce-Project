@@ -14,6 +14,7 @@ module.exports = {
         "main-color-0aad0a": "#0aad0a",
         "light-color-f0f3f2": "#f0f3f2",
         "rating-color-ffc908": "#ffc908",
+        "color-rgb-34-197-94": "rgb(34, 197, 94)",
       }
     },
   },

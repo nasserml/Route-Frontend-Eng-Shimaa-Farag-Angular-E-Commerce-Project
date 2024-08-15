@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .stars-flex {
+        @apply space-x-1 flex justify-center mt-5 items-center
+    }
+
+    .star-rating-gold{
+        @apply w-4 h-4 mx-px fill-current text-rating-color-ffc908
+    }
+
+    .star-rating-gray{
+        @apply w-4 h-4 mx-px fill-current text-gray-300
+    }
+
+    .stars-number-badge {
+        @apply inline-block ml-1 bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3
+    }
+}
