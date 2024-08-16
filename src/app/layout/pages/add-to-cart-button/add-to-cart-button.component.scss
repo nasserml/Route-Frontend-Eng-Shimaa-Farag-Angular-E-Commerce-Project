@@ -1,0 +1,8 @@
+@tailwind components;
+ 
+
+@layer components {
+    .product-add-to-cart-btn{
+        @apply p-2 px-3 bg-color-rgb-34-197-94 text-white rounded-md hover:bg-green-400 w-full mx-auto
+    }
+}

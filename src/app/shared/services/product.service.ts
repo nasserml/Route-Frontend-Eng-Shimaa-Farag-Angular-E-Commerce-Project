@@ -15,4 +15,8 @@ export class ProductService {
   getProducts():Observable<any>{
     return this._http.get(`${Environment.BASE_URL}products`)
   }
+
+  getSpecificProduct(productId:string):Observable<any>{
+    return this._http.get(`${Environment.BASE_URL}products/${productId}`)
+  }
 }

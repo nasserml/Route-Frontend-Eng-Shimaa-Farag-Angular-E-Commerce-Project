@@ -1,0 +1,15 @@
+<img [src]="imgSrc||imageCover" alt="Product"
+                      class="cover-product-img" id="mainImage">
+          <div class="product-imgs-container">
+
+
+            @for (src of images; track $index) {
+
+                <img [src]="src" alt="Thumbnail 1"
+                class="product-img-small" 
+                (click)="changeImage(src)">
+
+            }
+           
+            
+</div>

@@ -8,6 +8,7 @@ import { NotfoundComponent } from './layout/additions/notfound/notfound.componen
 import { LoginComponent } from './layout/pages/login/login.component';
 import { RegisterComponent } from './layout/pages/register/register.component';
 import { autGuard } from './shared/guard/aut.guard';
+import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path:'cart', component: CartComponent, canActivate:[autGuard]},
     {path:'brands', component: BrandComponent, canActivate:[autGuard]},
     {path:'products', component: ProductsComponent, canActivate:[autGuard]},
+    {path:'productDetails/:productId', component: ProductDetailsComponent, canActivate:[autGuard]},
     {path:'categories', component: CategoriesComponent, canActivate:[autGuard]},
     {path:'login', component: LoginComponent,},
     {path:'register', component: RegisterComponent},

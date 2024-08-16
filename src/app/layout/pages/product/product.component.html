@@ -1,19 +1,12 @@
-<section
-  class="product-section"
->
-        <img
-            [src]="product.imageCover"
-            class="product-img"
-            [alt]="product.title"
-        />
+<section class="product-section">
+    <div [routerLink]="'/productDetails/'+product._id">
+        <img [src]="product.imageCover" class="product-img" [alt]="product.title" />
 
 
-        <app-product-stars [ratingAverageStars]="product.ratingsAverage"></app-product-stars>
+        <app-product-stars [ratingAverageStars]="product.ratingsAverage" class="mt-5 block"></app-product-stars>
 
 
-        <h1
-            class="product-title"
-        >
+        <h1 class="product-title">
             {{ product.title }}
         </h1>
         <h2 class="text-main-color-0aad0a"> {{product.category.name}} </h2>
@@ -21,9 +14,8 @@
             {{ product.description }}
         </p>
         <h2 class="font-semibold mb-5">${{ product.price }}</h2>
-        <button
-            class="product-add-to-cart-btn"
-        >
-            Add To Cart
-        </button>
+
+    </div>
+
+    <app-add-to-cart-button class="w-3/4 mx-auto"></app-add-to-cart-button>
 </section>
