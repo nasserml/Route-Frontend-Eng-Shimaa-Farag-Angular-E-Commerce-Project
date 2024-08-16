@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/interface/product';
 import { ProductComponent } from "../product/product.component";
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductComponent],
+  imports: [ProductComponent, LoadingComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

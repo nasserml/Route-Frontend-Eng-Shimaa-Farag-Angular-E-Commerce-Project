@@ -7,10 +7,11 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { AddToCartButtonComponent } from '../../pages/add-to-cart-button/add-to-cart-button.component';
 import { ProductStarsComponent } from "../product-stars/product-stars.component";
 import { ImagesProductComponent } from "../images-product/images-product.component";
+import { LoadingComponent } from '../../pages/loading/loading.component';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent],
+  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent, LoadingComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
