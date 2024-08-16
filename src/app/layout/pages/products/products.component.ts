@@ -3,6 +3,7 @@ import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/interface/product';
 import { ProductComponent } from "../product/product.component";
 import { LoadingComponent } from '../loading/loading.component';
+import { LogExecution } from '../../../shared/decorator/log-execution.decorator';
 
 @Component({
   selector: 'app-products',
@@ -12,7 +13,6 @@ import { LoadingComponent } from '../loading/loading.component';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
-  
   productList:Product[]= []
 
   
@@ -27,8 +27,12 @@ export class ProductsComponent implements OnInit {
     //Add 'implements OnInit' to the class.
     this.getAllProducts();
   }
+
+  @LogExecution
   getAllProducts(){
     this._product.getProducts().subscribe({
+
+      
       next:(response)=> {
         this.productList = response.data;
       },

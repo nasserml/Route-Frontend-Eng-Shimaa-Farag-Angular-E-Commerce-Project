@@ -8,6 +8,7 @@ import { AddToCartButtonComponent } from '../../pages/add-to-cart-button/add-to-
 import { ProductStarsComponent } from "../product-stars/product-stars.component";
 import { ImagesProductComponent } from "../images-product/images-product.component";
 import { LoadingComponent } from '../../pages/loading/loading.component';
+import { LogExecution } from '../../../shared/decorator/log-execution.decorator';
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -59,14 +60,17 @@ export class ProductDetailsComponent implements OnInit {
     this.getProduct();
   }
 
+  @LogExecution
   changeImage(src:string) {
     this.imgSrc = src
   }
 
+
+
+  @LogExecution
   getProduct() {
     this._product.getSpecificProduct(this.id).subscribe({
       next: (response) => {
-        console.log('product ', response.data);
         this.productDetails = response.data;
       },
       error: (error) => {
