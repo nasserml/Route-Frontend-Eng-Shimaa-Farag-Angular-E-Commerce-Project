@@ -30,7 +30,6 @@ export class ProductsComponent implements OnInit {
   getAllProducts(){
     this._product.getProducts().subscribe({
       next:(response)=> {
-        console.log(response.data);
         this.productList = response.data;
       },
       error:(error) =>{

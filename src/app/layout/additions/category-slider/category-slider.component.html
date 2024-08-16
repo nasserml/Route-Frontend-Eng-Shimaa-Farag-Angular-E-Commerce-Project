@@ -1,0 +1,28 @@
+
+@if(categoryList.length == 0){
+    <div class="h-40 flex justify-center items-center">
+        <app-loading></app-loading>
+
+    </div>
+}@else {
+    <div class="container my-3">
+        <h1 class="category-title">Shop Popular Categories</h1>
+
+        <owl-carousel-o [options]="customOptions" >
+            @for (category of categoryList; track category._id) {
+                <ng-template carouselSlide [id]="category._id">
+                    <div class="hover:scale-110 transition-all duration-300 p-5">
+                        <img class="h-60 object-cover"  [src]="category.image" [alt]="category.name" [title]="category.name">
+                        <h2 class="category-name"> {{category.name}} </h2>
+                    </div>
+                    
+
+                    
+                </ng-template>
+            }
+        </owl-carousel-o>
+
+    </div>
+    
+
+}

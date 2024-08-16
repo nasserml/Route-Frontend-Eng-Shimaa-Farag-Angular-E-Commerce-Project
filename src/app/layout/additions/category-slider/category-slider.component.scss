@@ -1,0 +1,11 @@
+@tailwind components;
+
+@layer components{
+    .category-title{
+        @apply text-2xl  font-bold leading-7 xl:leading-9 text-lime-600 dark:text-white text-center my-2
+    }
+
+    .category-name{
+        @apply font-semibold text-xl text-indigo-400 mb-3 text-center mt-2
+    }
+}

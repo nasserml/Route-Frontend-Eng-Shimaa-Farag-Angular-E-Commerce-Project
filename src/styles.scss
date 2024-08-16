@@ -97,12 +97,12 @@ a , a:hover{
     }
 
     .tw-nav-li-link{
-        @apply block py-1 px-2  text-gray-900  rounded md:bg-transparent md:text-gray-900 md:dark:text-green-500 hover:text-green-700 transition-colors duration-500
+        @apply block py-1 px-2  text-gray-900  rounded md:bg-transparent md:text-gray-900 md:dark:text-green-500 hover:text-green-700 transition-colors duration-500 hover:bg-green-200
 
     }
 
     .tw-link-active{
-        @apply bg-green-200 rounded-lg text-sky-700 font-extrabold
+        @apply bg-green-300 rounded-lg text-sky-700 font-extrabold
     }
 
 }
