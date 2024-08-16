@@ -9,6 +9,8 @@ import { ProductStarsComponent } from "../product-stars/product-stars.component"
 import { ImagesProductComponent } from "../images-product/images-product.component";
 import { LoadingComponent } from '../../pages/loading/loading.component';
 import { LogExecution } from '../../../shared/decorator/log-execution.decorator';
+import { ProductProxyService } from '../../../shared/services/product-proxy.service';
+import { error } from 'console';
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -49,7 +51,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _product: ProductService
+    private _product: ProductService,
+    private productProxyService:ProductProxyService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +61,25 @@ export class ProductDetailsComponent implements OnInit {
     });
 
     this.getProduct();
+    // this.getProductProxy();
+  }
+
+
+  @LogExecution
+  getProductProxyNext(response:any):void{
+    this.productDetails = response.data;
+  }
+
+  @LogExecution
+  getProductProxy(){
+    this.productProxyService.getProduct(this.id).subscribe({
+      next:(response) => {
+        this.getProductProxyNext(response);
+      }, 
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 
   @LogExecution
@@ -67,12 +89,21 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
+
+
+
+  @LogExecution
+  getProductSubscribeNext(response:any) {
+    this.productDetails = response.data;
+  }
+
   @LogExecution
   getProduct() {
     this._product.getSpecificProduct(this.id).subscribe({
       next: (response) => {
-        this.productDetails = response.data;
-      },
+        this.getProductSubscribeNext(response);
+      }
+      ,
       error: (error) => {
         console.log(error);
       },
