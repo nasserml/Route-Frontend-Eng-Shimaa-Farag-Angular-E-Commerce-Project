@@ -6,6 +6,7 @@ import { Register } from '../interface/register';
 import { Login } from '../interface/login';
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { UserService } from './user.service';
+import { LoggingService } from './logging.service';
 
 
 @Injectable({
@@ -15,15 +16,21 @@ export class AuthService {
 
   private _userData = new BehaviorSubject<any>(null)
 
+  isLocalStorage: boolean = false
+
 
   constructor(
     private _http:HttpClient,
-    private _userService: UserService
+    private _userService: UserService,
+    private _loggingService:LoggingService,
     ) { 
       
       afterNextRender(()=>{
+        this._loggingService.logInfo("auth service init after next render");
+        this.isLocalStorage = true;
         // this.initializeUser();
         if(localStorage.getItem('userToken') != null) {
+          this._loggingService.logInfo("auth service init after next render local storage");
           this.userInformation();
         }
     })

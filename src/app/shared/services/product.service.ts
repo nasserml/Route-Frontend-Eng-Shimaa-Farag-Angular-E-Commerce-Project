@@ -17,13 +17,13 @@ export class ProductService {
     ) { 
   }
 
-  @LogExecution
+  // @LogExecution
   getProducts():Observable<any>{
-    this.loggingService.logInfo("Get Products");
+    this.loggingService.logInfo("Get Products ");
     return this._http.get(`${Environment.BASE_URL}products`)
   }
 
-  @LogExecution
+  // @LogExecution
   getSpecificProduct(productId:string):Observable<any>{
     this.loggingService.logInfo(`Get Specific Product with id  ${productId}`);
     return this._http.get(`${Environment.BASE_URL}products/${productId}`)

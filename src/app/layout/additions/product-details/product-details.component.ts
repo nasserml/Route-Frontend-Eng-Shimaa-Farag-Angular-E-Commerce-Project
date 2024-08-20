@@ -11,6 +11,7 @@ import { LoadingComponent } from '../../pages/loading/loading.component';
 import { LogExecution } from '../../../shared/decorator/log-execution.decorator';
 import { ProductProxyService } from '../../../shared/services/product-proxy.service';
 import { LoggingService } from '../../../shared/services/logging.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -53,11 +54,14 @@ export class ProductDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _product: ProductService,
     private productProxyService:ProductProxyService,
-    private _loggingService:LoggingService
+    private _loggingService:LoggingService,
+    private _title:Title,
   ) {}
 
   ngOnInit(): void {
+    this._loggingService.logInfo(`product details init`);
     this._route.params.subscribe((params) => {
+      this._loggingService.logInfo(`product details init ${params['productId']}`);
       this.id = params['productId'];
     });
 
@@ -66,25 +70,28 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  @LogExecution
+  // @LogExecution
   getProductProxyNext(response:any):void{
+    this._loggingService.logInfo(`get product proxy next called ${response.data}`);
     this.productDetails = response.data;
   }
 
-  @LogExecution
+  // @LogExecution
   getProductProxy(){
     this.productProxyService.getProduct(this.id).subscribe({
       next:(response) => {
+        this._loggingService.logInfo(`get product proxy next called ${response.data}`);
         this.getProductProxyNext(response);
       }, 
       error: (error) => {
-        console.log(error);
+        this._loggingService.logError(error);
       }
     })
   }
 
-  @LogExecution
+  // @LogExecution
   changeImage(src:string) {
+    this._loggingService.logInfo(`change image ${src}`);
     this.imgSrc = src
   }
 
@@ -93,18 +100,19 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-  @LogExecution
+  // @LogExecution
   getProductSubscribeNext(response:any) {
-    this._loggingService.logInfo(response.data);
+    // this._loggingService.logInfo(response.data);
 
     this.productDetails = response.data;
+    this._title.setTitle(this.productDetails.title);
   }
 
-  @LogExecution
+  // @LogExecution
   getProduct() {
     this._product.getSpecificProduct(this.id).subscribe({
       next: (response) => {
-        this._loggingService.logInfo(response);
+        // this._loggingService.logInfo(response);
         this.getProductSubscribeNext(response);
       }
       ,

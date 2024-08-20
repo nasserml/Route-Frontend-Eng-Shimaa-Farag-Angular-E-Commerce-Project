@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
     this.getAllProducts();
   }
 
-  @LogExecution
+  // @LogExecution
   getAllProducts(){
     this._product.getProducts().subscribe({
 

@@ -1,0 +1,306 @@
+
+
+@if(isCartEmpty ){
+    <div class="h-[90vh]   flex justify-center items-center">
+        <img src="img/cartempty.png" class=" mx-auto  inline-block  " alt="">
+    </div>
+}
+
+@if(isLoading){
+    <div class="h-[80vh] flex items-center justify-center">
+
+        <app-loading></app-loading>
+    </div>
+
+
+}
+
+ @if(cartItems && productList.length > 0) {
+
+
+
+
+    <section class="py-24 relative">
+        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+    
+            <h2 class="shop-title">Shopping Cart
+            </h2>
+            <div class="hidden lg:grid grid-cols-2 py-6">
+                <div class="prod-title">Product</div>
+                <p class="cart-head">
+                    <span class="w-full max-w-[200px] text-center">Delivery Charge</span>
+                    <span class="w-full max-w-[260px] text-center">Quantity</span>
+                    <span class="w-full max-w-[200px] text-center">Total</span>
+                </p>
+            </div>
+    
+            <!-- items of cart -->
+    
+            @for (cartProduct of productList; track cartProduct._id) {
+    
+                <div class="cart-grid">
+                    <div
+                        class="prod-img-title">
+                        <div class="prod-img"><img [src]="cartProduct.product.imageCover" [alt]="cartProduct.product.title" class="xl:w-[140px] rounded-3xl inline-block"></div>
+    
+                        <button (click)="deleteItem(cartProduct.product._id)"  class="del-item group">
+                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
+                                    cx="17" cy="17" r="17" fill="" />
+                                <path class="del-trash"
+                                    d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
+                                    stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                        </button>
+    
+    
+                        <div class="pro-data w-full max-w-sm ">
+                            <h5 class="prod-title">{{cartProduct.product.title}}
+                            </h5>
+                            <p
+                                class="cat-name">
+                                {{cartProduct.product.category.name}}</p>
+                            <h6 class="prod-price-per-unit">{{cartProduct.price.toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                              })}}</h6>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
+                        <h6 class="delivery">
+                            $00.00 <span class="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">(Delivery
+                                Charge)</span></h6>
+                        <div class="flex items-center w-full mx-auto justify-center">
+                            <button (click)="updateCart(cartProduct.product._id, cartProduct.count-1)"
+                                class="group dec-btn">
+                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
+                                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                    fill="none">
+                                    <path d="M16.5 11H5.5" stroke="" stroke-width="1.6" stroke-linecap="round" />
+                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <input min="0" [max]="cartProduct.product.quantity" (blur)="onBlurUpdateCart(cartProduct.product._id, $event)" type="number"
+                                class="inp-num"
+                                [placeholder]="cartProduct.count" value="{{cartProduct.count}}">
+                            <button (click)="updateCart(cartProduct.product._id, cartProduct.count+1)"
+                                class="group inc-btn">
+                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
+                                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                    fill="none">
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </button>
+                        </div>
+                        <h6
+                            class="total-price">
+                            {{(cartProduct.price * cartProduct.count).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                              })}}</h6>
+                    </div>
+                </div>
+    
+            }
+            
+         
+            
+            
+    
+            <!-- Total Sub total -->
+            <div class="bg-gray-50 rounded-xl p-6 w-full mb-8 max-lg:max-w-xl max-lg:mx-auto">
+                <div class="flex items-center justify-between w-full mb-6">
+                    <p class="sub-total">Sub Total</p>
+                    <h6 class="font-semibold text-xl leading-8 text-gray-900">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
+                </div>
+                <div class="flex items-center justify-between w-full pb-6 border-b border-gray-200">
+                    <p class="delivery-total">Delivery Charge</p>
+                    <h6 class="font-semibold text-xl leading-8 text-gray-900">$00.00</h6>
+                </div>
+                <div class="flex items-center justify-between w-full py-6">
+                    <p class="total-txt">Total</p>
+                    <h6 class="all-price">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
+                </div>
+            </div>
+    
+            <!--  Check Out Paymen -->
+            <div class="flex items-center flex-col sm:flex-row justify-center gap-3 mt-8">
+                <button disabled
+                    class=" add-coupon-btn">
+                    <span class="px-2 font-semibold text-lg leading-8 text-lime-600">Add Coupon Code</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M8.25324 5.49609L13.7535 10.9963L8.25 16.4998" stroke="#4F46E5" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button
+                    class="paymeny-button" >Continue
+                    to Payment
+                    <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22"
+                        fill="none">
+                        <path d="M8.75324 5.49609L14.2535 10.9963L8.75 16.4998" stroke="white" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex justify-end">
+                <button (click)="clearCart()"  class="clr-cart-btn">Clear Cart</button>
+
+            </div>
+        </div>
+    </section>
+}
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="px-4">
+    <div class="flex justify-evenly">
+
+        <div class="w-8/12">
+
+            <h1 class="text-main font-medium text-3xl text-center my-4">Shoping Cart</h1>
+
+            
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-16 py-3">
+                                <span class="sr-only">Image</span>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Product
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Qty
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (product of productList; track $index) {
+
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="p-4">
+                                    <img [src]="product.product.imageCover" class="w-16 md:w-32 max-w-full max-h-32 object-cover" [alt]="product.product.title">
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                    {{product.product.title}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <button (click)="updateCart(product.product._id, product.count-1)" class="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                                            <span class="sr-only">Quantity button</span>
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                            </svg>
+                                        </button>
+                                        <div>
+                                            <input type="number" id="first_product" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" [placeholder]="product.count"
+                                            [value]="product.count" required />
+                                        </div>
+                                        <button (click)="updateCart(product.product._id, product.count+1)" class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                                            <span class="sr-only">Quantity button</span>
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                    {{product.price.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                      })}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button (click)="deleteItem(product.product._id)" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
+                                </td>
+                            </tr>
+
+                        }
+                        
+                      
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="w-3/12">
+
+            
+
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                
+                <div class="px-5 pb-5">
+                    <a href="#">
+                        <h5 class="text-3xl text-main-color-0aad0a font-bold tracking-tight py-4  dark:text-white text-center">Shoping Cart</h5>
+                    </a>
+                   
+                    <div class="flex items-center flex-col justify-center gap-4">
+                        <span class="text-xl font-medium text-gray-900 dark:text-white">{{cartItems.totalCartPrice.toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                          })}}</span>
+                        <a href="#" class="text-white bg-main-color-0aad0a hover:bg-green-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Shopping Cart</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+ -->

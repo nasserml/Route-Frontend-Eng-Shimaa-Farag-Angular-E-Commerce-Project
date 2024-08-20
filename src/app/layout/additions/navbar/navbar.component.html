@@ -19,13 +19,20 @@
                     
                     @if(isLogin){
 
+                       
+                    
+                        <a routerLinkActive="tw-link-active" routerLink="/cart" class="tw-nav-li-link relative mr-10"><i class="fa-solid fa-cart-shopping"></i>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 absolute top-0">{{cartNumber}}</span>
+
+                        </a>
+
+
+                        
+                        
+                        
+
                         <a type="button" class="tw-nav-link logout" (click)="logout()">Logout</a>
-                        
-                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-facebook"></i></a>
-                        
-                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-twitter"></i></a>
-                        
-                                            <a type="button" class="tw-nav-social-link"><i class="fa-brands fa-instagram"></i></a>
+                                           
                     }
 
 
@@ -53,9 +60,7 @@
                             <a routerLink="/home" class="tw-nav-li-link" aria-current="page"
                                 routerLinkActive="tw-link-active">Home</a>
                         </li>
-                        <li>
-                            <a routerLinkActive="tw-link-active" routerLink="/cart" class="tw-nav-li-link">Cart</a>
-                        </li>
+                        
                         <li>
                             <a routerLinkActive="tw-link-active" routerLink="/products"
                                 class="tw-nav-li-link">Products</a>

@@ -12,14 +12,14 @@ import { ProductDetailsComponent } from './layout/additions/product-details/prod
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
-    {path:'home', component: HomeComponent, canActivate:[autGuard]},
-    {path:'cart', component: CartComponent, canActivate:[autGuard]},
-    {path:'brands', component: BrandComponent, canActivate:[autGuard]},
-    {path:'products', component: ProductsComponent, canActivate:[autGuard]},
+    {path:'home', component: HomeComponent, canActivate:[autGuard], title:'Home'},
+    {path:'cart', component: CartComponent, canActivate:[autGuard], title:'Cart'},
+    {path:'brands', component: BrandComponent, canActivate:[autGuard], title:'Brands' },
+    {path:'products', component: ProductsComponent, canActivate:[autGuard], title:'Products'},
     {path:'productDetails/:productId', component: ProductDetailsComponent, canActivate:[autGuard]},
-    {path:'categories', component: CategoriesComponent, canActivate:[autGuard]},
-    {path:'login', component: LoginComponent,},
-    {path:'register', component: RegisterComponent},
-    {path:'**', component: NotfoundComponent}
+    {path:'categories', component: CategoriesComponent, canActivate:[autGuard], title:'Categories'},
+    {path:'login', component: LoginComponent,title:'Login'},
+    {path:'register', component: RegisterComponent, title:'Register'},
+    {path:'**', component: NotfoundComponent, title:'Not Found'},
  
 ];

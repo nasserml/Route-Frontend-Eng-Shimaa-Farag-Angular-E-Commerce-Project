@@ -1,0 +1,97 @@
+@tailwind components;
+
+
+@layer components{
+    .shop-title{
+        @apply  font-bold text-4xl leading-10 mb-8 text-center text-main-color-0aad0a
+    }
+
+    .prod-title{
+        @apply font-normal text-xl leading-8 text-gray-500
+    }
+
+    .cart-head{
+        @apply font-normal text-xl leading-8 text-gray-500 flex items-center justify-between
+    } 
+    .cart-grid{
+        @apply grid grid-cols-1 lg:grid-cols-2 min-[550px]:gap-6 border-t border-gray-200 py-6 relative
+    }
+
+    .prod-img-title{
+        @apply flex items-center flex-col min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto
+    }
+
+    .prod-img{
+        @apply rounded-3xl overflow-hidden
+    }
+
+    .del-item{
+        @apply absolute top-3 right-4  rounded-full  flex items-center justify-center focus-within:outline-red-500
+    }
+
+    .del-trash{
+        @apply stroke-red-500 transition-all duration-500 group-hover:stroke-white
+    }
+
+    .prod-title{
+        @apply font-semibold text-xl leading-8 text-black max-[550px]:text-center
+    }
+
+    .cat-name{
+        @apply font-normal text-lg leading-8 text-gray-500 my-2 min-[550px]:my-3 max-[550px]:text-center
+    }
+
+    .prod-price-per-unit{
+        @apply font-medium text-lg leading-8 text-lime-600  max-[550px]:text-center
+    }
+
+    .delivery{
+        @apply  font-bold text-2xl leading-9 text-black w-full max-w-[176px] text-center
+    } 
+
+    .dec-btn{
+        @apply rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50
+    }
+
+    .inp-num{
+        @apply border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[118px] min-w-[80px] py-[15px] text-center bg-transparent placeholder:text-gray-400
+    }
+
+    .inc-btn {
+        @apply rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50
+    }
+
+    .total-price {
+        @apply text-emerald-500  font-bold text-2xl leading-9 w-full max-w-[176px] text-center
+    }
+
+    .sub-total{
+        @apply font-normal text-xl leading-8 text-gray-400
+    }
+
+    .delivery-total {
+        @apply font-normal text-xl leading-8 text-gray-400
+    }
+
+    .total-txt{
+        @apply  font-medium text-2xl leading-9 text-gray-900
+    }
+
+    .all-price{ 
+        @apply  font-extrabold text-3xl leading-9 text-indigo-500
+    }
+
+    .add-coupon-btn{
+        @apply disabled:cursor-not-allowed rounded-full py-4 w-full max-w-[280px]  flex items-center bg-lime-50 justify-center transition-all duration-500 hover:bg-lime-100 disabled:hover:bg-lime-50
+    }
+    .paymeny-button {
+        @apply rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700
+    }
+
+    .clr-cart-btn{
+        @apply text-red-500 border-2 border-red-500 rounded-lg py-1 px-2 transition-colors duration-500 hover:bg-red-500 hover:text-white mb-4 block
+    }
+   
+
+
+}
