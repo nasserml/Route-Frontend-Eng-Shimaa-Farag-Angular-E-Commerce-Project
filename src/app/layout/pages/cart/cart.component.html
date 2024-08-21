@@ -38,79 +38,92 @@
     
             @for (cartProduct of productList; track cartProduct._id) {
     
-                <div class="cart-grid">
-                    <div
-                        class="prod-img-title">
-                        <div class="prod-img"><img [src]="cartProduct.product.imageCover" [alt]="cartProduct.product.title" class="xl:w-[140px] rounded-3xl inline-block"></div>
-    
-                        <button (click)="deleteItem(cartProduct.product._id)"  class="del-item group">
-                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
-                                    cx="17" cy="17" r="17" fill="" />
-                                <path class="del-trash"
-                                    d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
-                                    stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
-                            </svg>
-                        </button>
-    
-    
-                        <div class="pro-data w-full max-w-sm ">
-                            <h5 class="prod-title">{{cartProduct.product.title}}
-                            </h5>
-                            <p
-                                class="cat-name">
-                                {{cartProduct.product.category.name}}</p>
-                            <h6 class="prod-price-per-unit">{{cartProduct.price.toLocaleString('en-US', {
-                                style: 'currency',
-                                currency: 'USD',
-                              })}}</h6>
-                        </div>
-                    </div>
-                    <div
-                        class="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
-                        <h6 class="delivery">
-                            $00.00 <span class="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">(Delivery
-                                Charge)</span></h6>
-                        <div class="flex items-center w-full mx-auto justify-center">
-                            <button [disabled]="cartProduct.count>1?false:true" (click)="updateCart(cartProduct.product._id, cartProduct.count-1)"
-                                class="group dec-btn disabled:cursor-not-allowed disabled:hover:bg-transparent">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                                    fill="none">
-                                    <path d="M16.5 11H5.5" stroke="" stroke-width="1.6" stroke-linecap="round" />
-                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
-                                        stroke-linecap="round" />
-                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
-                                        stroke-linecap="round" />
+               
+
+                    <div class="cart-grid">
+                        <div
+                            class="prod-img-title">
+                            <div class="prod-img"><img [src]="cartProduct.product.imageCover" [alt]="cartProduct.product.title" class="xl:w-[140px] rounded-3xl inline-block"></div>
+        
+                            <button (click)="deleteItem(cartProduct.product._id)"  class="del-item group">
+                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
+                                        cx="17" cy="17" r="17" fill="" />
+                                    <path class="del-trash"
+                                        d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
+                                        stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
                                 </svg>
                             </button>
-                            <input min="0" [max]="cartProduct.product.quantity" (blur)="onBlurUpdateCart(cartProduct.product._id, $event)" type="number"
-                                class="inp-num"
-                                [placeholder]="cartProduct.count" value="{{cartProduct.count}}">
-                            <button [disabled]="cartProduct.count>cartProduct.product.quantity" (click)="updateCart(cartProduct.product._id, cartProduct.count+1)"
-                                class="group inc-btn disabled:cursor-not-allowed disabled:hover:bg-transparent ">
-                                <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                                    fill="none">
-                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-width="1.6"
-                                        stroke-linecap="round" />
-                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
-                                        stroke-linecap="round" />
-                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
-                                        stroke-linecap="round" />
-                                </svg>
+        
+        
+                            <div class="pro-data w-full max-w-sm ">
+                                <h5 class="prod-title">{{cartProduct.product.title}}
+                                </h5>
+                                <p
+                                    class="cat-name">
+                                    {{cartProduct.product.category.name}}</p>
+                                <h6 class="prod-price-per-unit">{{cartProduct.price.toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                  })}}</h6>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
+                            <h6 class="delivery">
+                                $00.00 <span class="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">(Delivery
+                                    Charge)</span></h6>
+
                                 
-                            </button>
+                            <div class="flex items-center w-full mx-auto justify-center relative">
+                                @if(itemsLoadingState[cartProduct.product._id]){
+
+                                    <div class=" absolute top-0 left-0 w-full h-full flex justify-center items-center bg-green-50 bg-opacity-70">
+                                        <app-loading />
+    
+                                    </div>
+                                } 
+                                <button [disabled]="itemsLoadingState[cartProduct.product._id]" [disabled]="cartProduct.count>1?false:true" (click)="updateCart(cartProduct.product._id, cartProduct.count-1)"
+                                    class="group dec-btn disabled:cursor-not-allowed disabled:hover:bg-transparent">
+                                    <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
+                                        xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                        fill="none">
+                                        <path d="M16.5 11H5.5" stroke="" stroke-width="1.6" stroke-linecap="round" />
+                                        <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                        <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                                <input min="0" [max]="cartProduct.product.quantity" (blur)="onBlurUpdateCart(cartProduct.product._id, $event)" type="number"
+                                    class="inp-num"
+                                    [placeholder]="cartProduct.count" value="{{cartProduct.count}}">
+                                <button [disabled]="cartProduct.count>cartProduct.product.quantity" (click)="updateCart(cartProduct.product._id, cartProduct.count+1)"
+                                    class="group inc-btn disabled:cursor-not-allowed disabled:hover:bg-transparent ">
+                                    <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
+                                        xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                        fill="none">
+                                        <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                        <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                        <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    
+                                </button>
+                            </div>
+                            <h6
+                                class="total-price">
+                                {{(cartProduct.price * cartProduct.count).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                  })}}</h6>
                         </div>
-                        <h6
-                            class="total-price">
-                            {{(cartProduct.price * cartProduct.count).toLocaleString('en-US', {
-                                style: 'currency',
-                                currency: 'USD',
-                              })}}</h6>
                     </div>
-                </div>
+                
+
     
             }
             

@@ -17,11 +17,16 @@ import { RouterLink } from '@angular/router';
 export class CartComponent  implements OnInit{
 
 
+  isUpdateLoading:boolean = false;
+
   isLoading:boolean = true;
 
   isCartEmpty: boolean = false;
   cartItems!:Data;
   productList!:Products[];
+
+  // track loading state for individula items
+  itemsLoadingState: Record<string, boolean> = {};
 
   constructor(private _cart: CartService, private _loggingService:LoggingService){
 
@@ -61,6 +66,9 @@ export class CartComponent  implements OnInit{
 
   updateCart(productId:string, count:number){
 
+    this.itemsLoadingState[productId] = true;
+
+
     if(count <= 0 ) {
       return this.deleteItem(productId);
       
@@ -70,22 +78,29 @@ export class CartComponent  implements OnInit{
         this._cart.cartItemNumber.next(res.numOfCartItems);
 
         this.getCartProductItems();
+        this.itemsLoadingState[productId] = false;
       },
-      error:(error)=>{}
+      error:(error)=>{
+        console.log(error);
+        this.itemsLoadingState[productId] = false;
+      }
     })
   }
 
   deleteItem(productId:string){
+    this.itemsLoadingState[productId] = true;
     this._cart.deleteProductInCart(productId).subscribe({
       next:(res:CartData)=>{
         this.getCartProductItems();
         this._cart.cartItemNumber.next(res.numOfCartItems);
         this._loggingService.logInfo('Product deleted successfully');
+        this.itemsLoadingState[productId] = false;
 
       },
       error:(error)=>{
         
         console.log(error);
+        this.itemsLoadingState[productId] = false;
       }
     })
   }
@@ -98,7 +113,8 @@ export class CartComponent  implements OnInit{
 
 
 
-    this.updateCart(productId, event.target.value)
+      this.itemsLoadingState[productId] = true;
+      this.updateCart(productId, event.target.value)
   }
 
   clearCart(){
@@ -121,6 +137,9 @@ export class CartComponent  implements OnInit{
     })
   }
 
+  trackCartProduct(index: number, cartProduct:Products): string {
+    return cartProduct._id;
+  }
   
 
 }
