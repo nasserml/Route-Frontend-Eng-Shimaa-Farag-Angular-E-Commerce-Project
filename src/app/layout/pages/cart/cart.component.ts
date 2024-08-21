@@ -5,11 +5,12 @@ import { error } from 'console';
 import { LoggingService } from '../../../shared/services/logging.service';
 import { CartData, Data, Products } from '../../../shared/interface/cart-data';
 import { LoadingComponent } from "../loading/loading.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [LoadingComponent],
+  imports: [LoadingComponent, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -40,6 +41,9 @@ export class CartComponent  implements OnInit{
       
       next:(res:CartData) => {
         this.isLoading = false;
+
+      
+
         if(res.numOfCartItems == 0) {
            this.isCartEmpty = true;
         }

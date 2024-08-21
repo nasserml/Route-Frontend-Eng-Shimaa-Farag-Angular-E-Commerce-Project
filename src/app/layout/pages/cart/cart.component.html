@@ -73,8 +73,8 @@
                             $00.00 <span class="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">(Delivery
                                 Charge)</span></h6>
                         <div class="flex items-center w-full mx-auto justify-center">
-                            <button (click)="updateCart(cartProduct.product._id, cartProduct.count-1)"
-                                class="group dec-btn">
+                            <button [disabled]="cartProduct.count>1?false:true" (click)="updateCart(cartProduct.product._id, cartProduct.count-1)"
+                                class="group dec-btn disabled:cursor-not-allowed disabled:hover:bg-transparent">
                                 <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                     xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                     fill="none">
@@ -88,8 +88,8 @@
                             <input min="0" [max]="cartProduct.product.quantity" (blur)="onBlurUpdateCart(cartProduct.product._id, $event)" type="number"
                                 class="inp-num"
                                 [placeholder]="cartProduct.count" value="{{cartProduct.count}}">
-                            <button (click)="updateCart(cartProduct.product._id, cartProduct.count+1)"
-                                class="group inc-btn">
+                            <button [disabled]="cartProduct.count>cartProduct.product.quantity" (click)="updateCart(cartProduct.product._id, cartProduct.count+1)"
+                                class="group inc-btn disabled:cursor-not-allowed disabled:hover:bg-transparent ">
                                 <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                     xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                     fill="none">
@@ -100,6 +100,7 @@
                                     <path d="M11 5.5V16.5M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
                                         stroke-linecap="round" />
                                 </svg>
+                                
                             </button>
                         </div>
                         <h6
@@ -121,7 +122,7 @@
             <div class="bg-gray-50 rounded-xl p-6 w-full mb-8 max-lg:max-w-xl max-lg:mx-auto">
                 <div class="flex items-center justify-between w-full mb-6">
                     <p class="sub-total">Sub Total</p>
-                    <h6 class="font-semibold text-xl leading-8 text-gray-900">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
+                    <h6 class="font-semzibold text-xl leading-8 text-gray-900">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
                 </div>
                 <div class="flex items-center justify-between w-full pb-6 border-b border-gray-200">
                     <p class="delivery-total">Delivery Charge</p>
@@ -143,7 +144,7 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <button
+                <button routerLink="/checkout"
                     class="paymeny-button" >Continue
                     to Payment
                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22"
