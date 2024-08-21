@@ -13,7 +13,10 @@
         <p class="product-desc">
             {{ product.description }}
         </p>
-        <h2 class="font-semibold mb-5">${{ product.price }}</h2>
+        <h2 class="font-semibold mb-5">{{ product.price.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        }) }}</h2>
 
     </div>
 

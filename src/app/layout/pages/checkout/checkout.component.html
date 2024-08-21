@@ -6,26 +6,68 @@
 
     <div  class="w-8/12 mx-auto">
 
+        @if (errorMsg) {
+
+            <app-tw-alert alerTxt="NetWork error"/>
+        }
+
+
         <form [formGroup]="checkoutForm" action="" (ngSubmit)="submitData()">
 
             <div class="mb-6">
                 <label for="details-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Details</label>
-                <input formControlName="details" type="text" id="details-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input formControlName="details" type="text" id="details-input" class="input">
+
+                @if(checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched){
+
+                    <app-tw-danger [dangerTxt]="'Details is required min 3 characters '"/>
+                }
             </div>
             
 
             <div class="mb-6">
                 <label for="phone-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-                <input formControlName="phone" type="text" id="phone-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input formControlName="phone" type="text" id="phone-input" class="input">
+
+                @if(checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched){
+
+                    @if(checkoutForm.get('phone')?.errors?.['required']){
+
+                        <app-tw-danger [dangerTxt]="'Phone is required'"/>
+                    }
+
+
+                    @if(checkoutForm.get('phone')?.errors?.['pattern']){
+
+                        <app-tw-danger [dangerTxt]="'Enter a valid Phone number'"/>
+                    }
+
+    
+                }
+
             </div>
 
             <div class="mb-6">
                 <label for="city-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                <input formControlName="city" type="text" id="city-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input formControlName="city" type="text" id="city-input" class="input">
+                @if(checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched){
+
+                    <app-tw-danger [dangerTxt]="'City is required min 3 characters'"/>
+                }
             </div>
 
             <div class="mt-8 text-right">
-                <button type="submit" class="px-7 transition-colors duration-200 bg-main-color-0aad0a hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Payments</button>
+                @if(isBtnLoading) {
+
+                    <button [disabled]="true"  class="btn-pay ">
+                        
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                   </button> 
+
+                } @else {
+                    <button [disabled]="checkoutForm.invalid" type="submit" class="btn-pay ">Payments</button>
+
+                }
             </div>
 
         </form> 

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { ConfirmPasswordValidator } from '../utils/confirm-password-validator.utils';
+import { RegisterValidators } from '../utils/validators/register.validators';
+import { LoginValidators } from '../utils/validators/login.validators';
+import { checkoutValidators } from '../utils/validators/checkout.validators';
 
 
 @Injectable({
@@ -8,28 +12,39 @@ import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/fo
 })
 export class ValidationService {
 
+
   constructor() { }
 
   createRegisterForm():FormGroup{
     return new FormGroup({
 
-      name:new FormControl(null,[Validators.required, Validators.minLength(3),Validators.maxLength(10)]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{8}$/)]),
-      rePassword: new FormControl(null, [Validators.required]),
-      phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[1250][0-9]{8}$/)])
+      name:new FormControl(null,RegisterValidators.name),
+      email: new FormControl(null, RegisterValidators.email),
+      password: new FormControl(null, RegisterValidators.password),
+      rePassword: new FormControl(null, RegisterValidators.rePassword),
+      phone: new FormControl(null, RegisterValidators.phone)
 
-    }, this.confirmPassword );
+    }, ConfirmPasswordValidator.validate );
   }
 
-  confirmPassword(g:AbstractControl) {
-    return g.get('password')?.value === g.get('rePassword')?.value ? null:{mismatch: true};
-  }
+
 
   createLoginForm():FormGroup {
     return new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z][a-z0-9]{8}$/)])
-    })
+      email: new FormControl(null, LoginValidators.email),
+      password: new FormControl(null, LoginValidators.password)
+    });
   }
+
+
+  createCheckOutForm():FormGroup {
+    return new FormGroup({
+      details: new FormControl(null, checkoutValidators.details),
+      phone: new FormControl(null, checkoutValidators.phone),
+      city: new FormControl(null, checkoutValidators.city)
+    });
+  }
+
+
+
 }

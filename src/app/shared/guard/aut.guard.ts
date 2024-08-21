@@ -7,6 +7,7 @@ export const autGuard: CanActivateFn = (route, state) => {
 
   let _router = inject(Router);
   let _auth = inject(AuthService);
+ 
   let platformId = inject(PLATFORM_ID);
 
 

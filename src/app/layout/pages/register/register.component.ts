@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit, SendData, GetErrMsg, GetIsLoad
   sendData():void{
     this.loadingService.setLoading(true);
 
-    console.log(this.registerForm)
     
 
     this._auth.register(this.registerForm.value).subscribe({

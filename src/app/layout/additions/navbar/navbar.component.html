@@ -5,7 +5,7 @@
                 <a routerLink="/home" class="tw-nav-logo">
                     <img src="img/freshcart-logo.svg" class="h-8" alt="FreshCart Logo" />
                 </a>
-                <div class="tw-nav-items">
+                <div class="tw-nav-items items-center">
 
                     @if(!isLogin) {
 
@@ -21,8 +21,8 @@
 
                        
                     
-                        <a routerLinkActive="tw-link-active" routerLink="/cart" class="tw-nav-li-link relative mr-10"><i class="fa-solid fa-cart-shopping"></i>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 absolute top-0">{{cartNumber}}</span>
+                        <a routerLinkActive="text-sky-700" routerLink="/cart" class="tw-nav-li-link relative mr-10 hover:bg-transparent hover:text-sky-700 text-xl"><i class="fa-solid fa-cart-shopping"></i>
+                        <span class="bg-green-200 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 absolute top-0">{{cartNumber}}</span>
 
                         </a>
 

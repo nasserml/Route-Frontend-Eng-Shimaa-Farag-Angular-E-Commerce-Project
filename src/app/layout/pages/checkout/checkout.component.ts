@@ -3,29 +3,34 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PaymentService } from '../../../shared/services/payment.service';
 import { CartService } from '../../../shared/services/cart.service';
 import { ResponseSubscribeCheckout } from '../../../shared/interface/response-subscribe-checkout';
+import { ValidationService } from '../../../shared/services/validation.service';
+import { TwDangerComponent } from "../../additions/tw-danger/tw-danger.component";
+import { TwAlertComponent } from "../../additions/tw-alert/tw-alert.component";
 
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TwDangerComponent, TwAlertComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent implements OnInit {
 
+  isBtnLoading:boolean = false;
+  errorMsg:string = '';
   cartId!:string;
 
-  checkoutForm:FormGroup = new FormGroup({
-    details: new FormControl(null),
-    phone: new FormControl(null),
-    city: new FormControl(null)
-  });
-  constructor(private _payment:PaymentService, private _cart:CartService) {}
+  checkoutForm!:FormGroup 
+  constructor(private _payment:PaymentService, private _cart:CartService, private validationService:ValidationService) {}
 
   ngOnInit(): void {
 
+    this.checkoutForm = this.validationService.createCheckOutForm();
+
     this.getCart();
+
+
     
     
   }
@@ -45,14 +50,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitData():void{
-    console.log(this.checkoutForm.value)
+    console.log(this.checkoutForm)
 
     this._payment.checkout(this.cartId, this.checkoutForm.value).subscribe({
       next:(response:ResponseSubscribeCheckout)=>{
+        this.isBtnLoading = true;
         window.location.href = response.session.url
       },
       error:(error) =>{
         console.log(error)
+        this.errorMsg = 'error'
 
       }
     })

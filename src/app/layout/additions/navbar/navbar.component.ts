@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { CartService } from '../../../shared/services/cart.service';
+import { FlowbiteService } from '../../../shared/services/flowbite.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,7 @@ export class NavbarComponent {
     private _auth: AuthService,
     private _router:Router,
     private _cart: CartService,
+    private flowbiteService:FlowbiteService
       
   ){
 
@@ -44,6 +46,10 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
+
+    this.flowbiteService.loadFlowbite(flowbite => {
+      console.log('Flowbite loaded' + flowbite);
+    })
 
 
       
