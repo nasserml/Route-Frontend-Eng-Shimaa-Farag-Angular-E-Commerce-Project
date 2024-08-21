@@ -8,11 +8,13 @@ import { ErrorService } from '../../../shared/services/error.service';
 import { SendData } from '../../../shared/interface/send-data';
 import { GetErrMsg } from '../../../shared/interface/get-err-msg';
 import { GetIsLoading } from '../../../shared/interface/get-is-loading';
+import { TwDangerComponent } from '../../additions/tw-danger/tw-danger.component';
+import { TwAlertComponent } from '../../additions/tw-alert/tw-alert.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TwDangerComponent, TwAlertComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

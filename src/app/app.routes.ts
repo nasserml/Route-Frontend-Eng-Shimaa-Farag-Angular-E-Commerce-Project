@@ -10,7 +10,7 @@ import { RegisterComponent } from './layout/pages/register/register.component';
 import { autGuard } from './shared/guard/aut.guard';
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
 import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
-import { AllOrdersComponent } from './layout/all-orders/all-orders.component';
+import { AllOrdersComponent } from './layout/pages/all-orders/all-orders.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
