@@ -1,1 +1,35 @@
-<p>checkout works!</p>
+
+
+
+ <div class="w-10/12 mx-auto px-4 my-5"> 
+    <h1 class="text-main text-3xl font-medium my-3">Payment Now</h1>
+
+    <div  class="w-8/12 mx-auto">
+
+        <form [formGroup]="checkoutForm" action="" (ngSubmit)="submitData()">
+
+            <div class="mb-6">
+                <label for="details-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Details</label>
+                <input formControlName="details" type="text" id="details-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            
+
+            <div class="mb-6">
+                <label for="phone-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                <input formControlName="phone" type="text" id="phone-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+
+            <div class="mb-6">
+                <label for="city-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                <input formControlName="city" type="text" id="city-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+
+            <div class="mt-8 text-right">
+                <button type="submit" class="px-7 transition-colors duration-200 bg-main-color-0aad0a hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Payments</button>
+            </div>
+
+        </form> 
+
+    </div>
+
+</div> 
