@@ -12,6 +12,7 @@ import { ProductDetailsComponent } from './layout/additions/product-details/prod
 import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
 import { AllOrdersComponent } from './layout/pages/all-orders/all-orders.component';
 import { ForgetPasswordComponent } from './layout/pages/forget-password/forget-password.component';
+import { logoutGuard } from './shared/guard/logout.guard';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -23,9 +24,9 @@ export const routes: Routes = [
     {path:'categories', component: CategoriesComponent, canActivate:[autGuard], title:'Categories'},
     {path:'checkout', component: CheckoutComponent, canActivate:[autGuard], title:'CheckOut'},
     {path:'allorders', component: AllOrdersComponent, canActivate:[autGuard], title:'CheckOut'},
-    {path:'login', component: LoginComponent,title:'Login'},
-    {path:'forget-password', component: ForgetPasswordComponent,title:'Forget Password'},
-    {path:'register', component: RegisterComponent, title:'Register'},
+    {path:'login', component: LoginComponent,title:'Login', canActivate: [logoutGuard]},
+    {path:'forget-password', component: ForgetPasswordComponent,title:'Forget Password', canActivate: [logoutGuard]},
+    {path:'register', component: RegisterComponent, title:'Register', canActivate:[logoutGuard]},
     {path:'**', component: NotfoundComponent, title:'Not Found'},
  
 ];

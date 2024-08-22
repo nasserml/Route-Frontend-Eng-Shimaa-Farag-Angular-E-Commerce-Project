@@ -1,3 +1,13 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+@if(loading) {
+    <div class="absolute top-0 left-0 right-0 bottom-0 bg-white w-full flex justify-center items-center z-50">
+        <app-loading></app-loading>
+
+    </div>
+} 
+@if(!loading){ 
+    
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+}
+

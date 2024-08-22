@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -10,6 +10,7 @@ import { GetErrMsg } from '../../../shared/interface/get-err-msg';
 import { GetIsLoading } from '../../../shared/interface/get-is-loading';
 import { TwAlertComponent } from '../../additions/tw-alert/tw-alert.component';
 import { TwDangerComponent } from '../../additions/tw-danger/tw-danger.component';
+import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ import { TwDangerComponent } from '../../additions/tw-danger/tw-danger.component
 export class LoginComponent implements OnInit , SendData, GetErrMsg, GetIsLoading{
 
   loginForm!:FormGroup; 
+  private readonly _cart = inject(CartService);
 
   constructor(
     private _auth:AuthService,
@@ -41,13 +43,17 @@ export class LoginComponent implements OnInit , SendData, GetErrMsg, GetIsLoadin
   sendData(): void {
       this.LoadingService.setLoading(true);
 
-      console.log(this.loginForm);
 
       this._auth.login(this.loginForm.value).subscribe({
         next:(response) => {
           if(response.message == 'success') {
             localStorage.setItem('userToken', response.token);
             this._auth.userInformation();
+            this._cart.getCartProduct().subscribe({
+              next: (res) => {
+                this._cart.cartItemNumber.next(res.numOfCartItems);
+              }
+            })
             this.router.navigate(['/home']);
             this.LoadingService.setLoading(false);
           }
