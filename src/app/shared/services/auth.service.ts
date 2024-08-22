@@ -72,6 +72,22 @@ export class AuthService {
 
   }
 
+  verifyEmail(email:any) :Observable<any> {
+    return this._http.post(Environment.BASE_URL + 'auth/forgotPasswords',email);
+  }
+
+  verifyCode(code:any) :Observable<any> {
+    return this._http.post(Environment.BASE_URL + 'auth/verifyResetCode',code);
+  }
+
+  resetPassword(data:any) :Observable<any> {
+    return this._http.put(Environment.BASE_URL + 'auth/resetPassword',data);
+  }
+
+
+
+  
+
 
 
 }

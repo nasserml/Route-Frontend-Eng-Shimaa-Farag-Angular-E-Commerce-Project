@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ValidationService } from '../../../shared/services/validation.service';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { ErrorService } from '../../../shared/services/error.service';
@@ -14,7 +14,7 @@ import { TwDangerComponent } from '../../additions/tw-danger/tw-danger.component
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, TwAlertComponent, TwDangerComponent],
+  imports: [ReactiveFormsModule, TwAlertComponent, TwDangerComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

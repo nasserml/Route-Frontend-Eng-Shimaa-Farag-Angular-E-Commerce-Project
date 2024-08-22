@@ -1,0 +1,81 @@
+@if(steps == 2) {
+
+<div class="max-w-md mx-auto border mt-20">
+    @if(errorMsg){
+        <app-tw-alert [alerTxt]="'Invalid Code'" />
+    }
+    <form (ngSubmit)="codeSubmit()" [formGroup]="verifyCode" class="bg-white shadow-md rounded-lg px-8 py-6 border-2 border-indigo-300 overflow-hidden">
+        <h1 class="block text-2xl font-bold text-main-color-0aad0a text-center dark:text-white">Reset Code</h1>
+        <div class="mb-4">
+            <label  class="block text-gray-700 text-sm font-bold mb-2" for="otp">OTP:</label>
+            <input maxlength="10" formControlName="resetCode" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="otp" type="text" placeholder="Enter OTP">
+
+            @if(verifyCode.get('resetCode')?.errors && verifyCode.get('resetCode')?.touched ) {
+
+                @if(verifyCode.get('resetCode')?.errors?.['required']) {
+                    <app-tw-danger [dangerTxt]="'OTP is required'"/>
+                }
+                
+                @if(verifyCode.get('resetCode')?.errors?.['pattern']) {
+                    <app-tw-danger [dangerTxt]="'OTP must be between 4 and 10 characters'"/>
+                }
+
+            }
+        </div>
+        <div class="flex items-center justify-between">
+
+            @if(isBtnLoading){
+                <button disabled class="disabled:bg-indigo-500 disabled:hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-30 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <i class="fa-solid fa-spinner animate-spin"></i>
+                 </button>
+
+            }@else {
+                <button [disabled]="verifyCode.invalid" class="disabled:bg-indigo-500 disabled:hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-30 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Verify
+                 </button>    
+            }
+
+
+            @if(isResentBtnLoading) {
+                <button disabled class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800 disabled:cursor-not-allowed disabled:hover:text-indigo-500 disabled:opacity-75" >
+                    <i class="fa-solid fa-spinner animate-spin"></i>
+                </button>
+
+            } @else {
+                <button type="button" (click)="resendCode()" class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800" >
+                    Resend OTP
+                </button>
+
+            }
+            
+        </div>
+    </form>
+</div>
+
+}@else if (steps == 3) {
+
+    <app-reset-password [email]="email"></app-reset-password>
+}
+ 
+
+
+
+<!-- <div class="max-w-md mx-auto border max-w-sm mt-20 rounded">
+    <form class="shadow-md px-4 py-6">
+        <div class="flex justify-center gap-2 mb-6">
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="one-time-code" required>
+        </div>
+        <div class="flex items-center justify-center">
+            <button class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Verify
+            </button>
+            <a class="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800 ml-4" href="#">
+                Resend OTP
+            </a>
+        </div>
+    </form>
+</div> -->
+

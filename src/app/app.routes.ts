@@ -11,6 +11,7 @@ import { autGuard } from './shared/guard/aut.guard';
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
 import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
 import { AllOrdersComponent } from './layout/pages/all-orders/all-orders.component';
+import { ForgetPasswordComponent } from './layout/pages/forget-password/forget-password.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {path:'checkout', component: CheckoutComponent, canActivate:[autGuard], title:'CheckOut'},
     {path:'allorders', component: AllOrdersComponent, canActivate:[autGuard], title:'CheckOut'},
     {path:'login', component: LoginComponent,title:'Login'},
+    {path:'forget-password', component: ForgetPasswordComponent,title:'Forget Password'},
     {path:'register', component: RegisterComponent, title:'Register'},
     {path:'**', component: NotfoundComponent, title:'Not Found'},
  
