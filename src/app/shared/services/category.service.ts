@@ -16,7 +16,7 @@ export class CategoryService {
 
   // @LogExecution
   getCategories():Observable<any>{
-    this._loggingService.logInfo("Get Categories");
+    // this._loggingService.logInfo("Get Categories");
     return this._http.get(`${Environment.BASE_URL}categories`)
   }
 }

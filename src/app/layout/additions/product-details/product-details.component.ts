@@ -59,9 +59,9 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._loggingService.logInfo(`product details init`);
+    // this._loggingService.logInfo(`product details init`);
     this._route.params.subscribe((params) => {
-      this._loggingService.logInfo(`product details init ${params['productId']}`);
+      // this._loggingService.logInfo(`product details init ${params['productId']}`);
       this.id = params['productId'];
     });
 
@@ -72,7 +72,7 @@ export class ProductDetailsComponent implements OnInit {
 
   // @LogExecution
   getProductProxyNext(response:any):void{
-    this._loggingService.logInfo(`get product proxy next called ${response.data}`);
+    // this._loggingService.logInfo(`get product proxy next called ${response.data}`);
     this.productDetails = response.data;
   }
 
@@ -80,18 +80,19 @@ export class ProductDetailsComponent implements OnInit {
   getProductProxy(){
     this.productProxyService.getProduct(this.id).subscribe({
       next:(response) => {
-        this._loggingService.logInfo(`get product proxy next called ${response.data}`);
+        // this._loggingService.logInfo(`get product proxy next called ${response.data}`);
         this.getProductProxyNext(response);
       }, 
       error: (error) => {
-        this._loggingService.logError(error);
+        // this._loggingService.logError(error);
+        console.log(error);
       }
     })
   }
 
   // @LogExecution
   changeImage(src:string) {
-    this._loggingService.logInfo(`change image ${src}`);
+    // this._loggingService.logInfo(`change image ${src}`);
     this.imgSrc = src
   }
 

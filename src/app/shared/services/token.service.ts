@@ -9,7 +9,7 @@ export class TokenService {
   constructor(private _loggingService :LoggingService) { }
 
   getToken(): string | null {
-    this._loggingService.logInfo("getting token from local storage");
+    // this._loggingService.logInfo("getting token from local storage");
     return localStorage.getItem('userToken');
   }
 }

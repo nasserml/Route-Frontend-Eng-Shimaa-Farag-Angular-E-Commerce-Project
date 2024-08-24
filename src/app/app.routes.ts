@@ -13,13 +13,14 @@ import { CheckoutComponent } from './layout/pages/checkout/checkout.component';
 import { AllOrdersComponent } from './layout/pages/all-orders/all-orders.component';
 import { ForgetPasswordComponent } from './layout/pages/forget-password/forget-password.component';
 import { logoutGuard } from './shared/guard/logout.guard';
+import { ProductsSearchComponent } from './layout/pages/products-search/products-search.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
     {path:'home', component: HomeComponent, canActivate:[autGuard], title:'Home'},
     {path:'cart', component: CartComponent, canActivate:[autGuard], title:'Cart'},
     {path:'brands', component: BrandComponent, canActivate:[autGuard], title:'Brands' },
-    {path:'products', component: ProductsComponent, canActivate:[autGuard], title:'Products'},
+    {path:'products', component: ProductsSearchComponent, canActivate:[autGuard], title:'Products'},
     {path:'productDetails/:productId', component: ProductDetailsComponent, canActivate:[autGuard]},
     {path:'categories', component: CategoriesComponent, canActivate:[autGuard], title:'Categories'},
     {path:'checkout', component: CheckoutComponent, canActivate:[autGuard], title:'CheckOut'},

@@ -26,11 +26,11 @@ export class AuthService {
     ) { 
       
       afterNextRender(()=>{
-        this._loggingService.logInfo("auth service init after next render");
+        // this._loggingService.logInfo("auth service init after next render");
         this.isLocalStorage = true;
         // this.initializeUser();
         if(localStorage.getItem('userToken') != null) {
-          this._loggingService.logInfo("auth service init after next render local storage");
+          // this._loggingService.logInfo("auth service init after next render local storage");
           this.userInformation();
         }
     })

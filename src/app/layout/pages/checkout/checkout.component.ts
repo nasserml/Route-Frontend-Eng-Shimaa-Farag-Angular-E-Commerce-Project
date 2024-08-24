@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
       next:(res) =>{
 
         this.cartId = res.data._id
-        console.log(res.data._id)
+        // console.log(res.data._id)
 
       },
       error: (error) =>{

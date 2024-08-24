@@ -19,7 +19,7 @@ export class PaymentService implements IPaymentService{
   }
 
   checkout(id:string, formData:Payment):Observable<any> {
-    this._logging.logInfo('payment service checkout init');
+    // this._logging.logInfo('payment service checkout init');
     return this._http.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=http://localhost:4200/`,{
       shippingAddress: formData
     } ,{

@@ -21,7 +21,7 @@ export class AllOrdersComponent implements OnInit {
         this.cartService.cartItemNumber.next(0);
 
 
-        console.log(res);
+        // console.log(res);
 
       },
       error: (error)=>{

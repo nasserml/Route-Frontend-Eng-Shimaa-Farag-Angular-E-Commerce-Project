@@ -19,7 +19,7 @@ export class AddToCartButtonComponent {
 
   addProduct() {
 
-    this._loggingService.logInfo(`Add product to cart from add to card button component with id ${this.productId}`)
+    // this._loggingService.logInfo(`Add product to cart from add to card button component with id ${this.productId}`)
     
     this._cart.addProductToCart(this.productId).subscribe({
       next:(res)=>{
@@ -32,7 +32,8 @@ export class AddToCartButtonComponent {
         })
       }, 
       error: (error) => {
-        this._loggingService.logError(error);
+        // this._loggingService.logError(error);
+        console.log(error);
         this._toastr.error('Can not add this product to cart');
       }
     })

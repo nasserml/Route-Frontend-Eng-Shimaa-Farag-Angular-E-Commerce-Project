@@ -41,7 +41,7 @@ export class CartComponent  implements OnInit{
 
   getCartProductItems() {
 
-    this._loggingService.logInfo("Get cart product items");
+    // this._loggingService.logInfo("Get cart product items");
     this._cart.getCartProduct().subscribe({
       
       next:(res:CartData) => {
@@ -122,7 +122,7 @@ export class CartComponent  implements OnInit{
       next:(res)=>{
 
 
-        this._loggingService.logInfo('Cart cleared successfully');
+        // this._loggingService.logInfo('Cart cleared successfully');
         this._cart.cartItemNumber.next(0);
         this.isCartEmpty = true;
         this.isLoading = false;
