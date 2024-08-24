@@ -1,1 +1,37 @@
-<p>brand works!</p>
+@if(isLoading) {
+    <div class="flex justify-center items-center h-[65vh]">
+
+        <app-loading></app-loading>
+    </div>
+}@else { 
+
+    <div class="text-center p-5 pt-10">
+        <h1 class="font-bold text-4xl mb-4 text-sky-400">All Brands</h1>
+    </div>
+    
+    <section id="Projects"
+        class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-7 gap-x-7 mt-5 mb-20">
+    
+        @for(brand of brandsArr; track $index) {
+            <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                <a href="#">
+                    <img [src]="brand.image"
+                            alt="Product" class=" w-full  rounded-t-xl" />
+                    <div class="px-4 py-3 w-72">
+                        <p class="text-lg font-bold text-black truncate block capitalize text-center">{{brand.name}}</p>
+                     
+                    </div>
+                </a>
+            </div>
+    
+        }
+    
+        
+    
+    </section>
+
+}    
+
+
+
+
