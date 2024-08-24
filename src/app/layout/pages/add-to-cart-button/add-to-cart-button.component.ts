@@ -13,6 +13,8 @@ import { CartData } from '../../../shared/interface/cart-data';
 })
 export class AddToCartButtonComponent {
 
+  isBtnLoading:boolean = false;
+
   @Input() productId!: string;
 
   constructor(private _cart:CartService, private _loggingService:LoggingService,private _toastr:ToastrService ){}
@@ -20,10 +22,12 @@ export class AddToCartButtonComponent {
   addProduct() {
 
     // this._loggingService.logInfo(`Add product to cart from add to card button component with id ${this.productId}`)
+    this.isBtnLoading = true;
     
     this._cart.addProductToCart(this.productId).subscribe({
       next:(res)=>{
-        this._cart.cartItemNumber.next(res.numOfCartItems)
+        this._cart.cartItemNumber.next(res.numOfCartItems);
+        this.isBtnLoading = false;
         this._toastr.success(res.message,'' ,{
           progressBar: true,
           progressAnimation:'increasing',
@@ -34,6 +38,7 @@ export class AddToCartButtonComponent {
       error: (error) => {
         // this._loggingService.logError(error);
         console.log(error);
+        this.isBtnLoading = false
         this._toastr.error('Can not add this product to cart');
       }
     })

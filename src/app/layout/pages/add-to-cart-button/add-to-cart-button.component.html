@@ -1,3 +1,11 @@
-<button (click)="addProduct()"   class="product-add-to-cart-btn">
-    Add To Cart
-</button>
+@if(isBtnLoading) {
+    <button disabled   class=" product-add-to-cart-btn disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-color-rgb-34-197-94  disabled:hover:bg-color-rgb-34-197-94 hover:bg-color-rgb-34-197-94 bg-color-rgb-34-197-94">
+        <i class="fa-solid fa-spinner animate-spin"></i>
+    </button>
+
+} @else { 
+
+    <button (click)="addProduct()"   class="product-add-to-cart-btn">
+        Add To Cart
+    </button>
+}
