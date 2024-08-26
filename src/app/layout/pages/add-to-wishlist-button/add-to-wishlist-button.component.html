@@ -1,0 +1,27 @@
+
+<div class="relative">
+
+    @if(isBtnLoading) {
+        <div class="absolute top-0 left-0 right-0 bottom-0 bg-white w-full flex justify-center items-center bg-opacity-50">
+            <app-loading></app-loading>
+
+        </div>
+    }
+    
+    @if(isAddBtnClicked){
+        <button (click)="deleteProductFromWishlist()">
+            <i class="fa-solid transition-colors duration-300 fa-heart text-red-500 hover:text-gray-300"></i>
+        
+                                    
+        </button>
+    
+    } @else {
+    
+        <button>
+            <i (click)="addToWishlist()" class="fa-solid text-gray-300 transition-colors duration-300 fa-heart hover:text-red-500"></i>                 
+        </button>
+    
+    }
+
+</div>    
+

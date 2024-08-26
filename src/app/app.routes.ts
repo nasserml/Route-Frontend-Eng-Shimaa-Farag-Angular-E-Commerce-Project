@@ -14,6 +14,7 @@ import { AllOrdersComponent } from './layout/pages/all-orders/all-orders.compone
 import { ForgetPasswordComponent } from './layout/pages/forget-password/forget-password.component';
 import { logoutGuard } from './shared/guard/logout.guard';
 import { ProductsSearchComponent } from './layout/pages/products-search/products-search.component';
+import { WishListComponent } from './layout/pages/wish-list/wish-list.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {path:'categories', component: CategoriesComponent, canActivate:[autGuard], title:'Categories'},
     {path:'checkout', component: CheckoutComponent, canActivate:[autGuard], title:'CheckOut'},
     {path:'allorders', component: AllOrdersComponent, canActivate:[autGuard], title:'CheckOut'},
+    {path:'wishlist', component: WishListComponent, canActivate:[autGuard], title:'Wish List'},
     {path:'login', component: LoginComponent,title:'Login', canActivate: [logoutGuard]},
     {path:'forget-password', component: ForgetPasswordComponent,title:'Forget Password', canActivate: [logoutGuard]},
     {path:'register', component: RegisterComponent, title:'Register', canActivate:[logoutGuard]},

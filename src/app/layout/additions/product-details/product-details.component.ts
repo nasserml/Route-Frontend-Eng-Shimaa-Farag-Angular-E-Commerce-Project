@@ -12,10 +12,11 @@ import { LogExecution } from '../../../shared/decorator/log-execution.decorator'
 import { ProductProxyService } from '../../../shared/services/product-proxy.service';
 import { LoggingService } from '../../../shared/services/logging.service';
 import { Title } from '@angular/platform-browser';
+import { AddToWishlistButtonComponent } from "../../pages/add-to-wishlist-button/add-to-wishlist-button.component";
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent, LoadingComponent],
+  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent, LoadingComponent, AddToWishlistButtonComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })

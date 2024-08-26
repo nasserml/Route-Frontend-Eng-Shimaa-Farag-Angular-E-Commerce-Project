@@ -1,6 +1,10 @@
-<section class="product-section">
+<section class="product-section relative">
     <div [routerLink]="'/productDetails/'+product._id">
+      
+
         <img [src]="product.imageCover" class="product-img" [alt]="product.title" />
+            
+       
 
 
         <app-product-stars [ratingAverageStars]="product.ratingsAverage" class="mt-5 block"></app-product-stars>
@@ -21,4 +25,9 @@
     </div>
 
     <app-add-to-cart-button [productId]="product._id" class="w-3/4 mx-auto"></app-add-to-cart-button>
+    <div class="absolute right-10 top-8 z-10 text-3xl">
+        <app-add-to-wishlist-button [productId]="product._id"></app-add-to-wishlist-button>
+
+    </div>
+      
 </section>
