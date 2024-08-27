@@ -5,6 +5,7 @@ import { ProductComponent } from "../product/product.component";
 import { LoadingComponent } from '../loading/loading.component';
 import { LogExecution } from '../../../shared/decorator/log-execution.decorator';
 import { ProductsSearchService } from '../../../shared/services/products-search.service';
+import { WishlistService } from '../../../shared/services/wishlist.service';
 
 @Component({
   selector: 'app-products',
@@ -19,6 +20,7 @@ export class ProductsComponent implements OnInit , OnChanges {
   @Input() search!:string;
 
   // private productsSearchService= inject(ProductsSearchService);
+  private wishlistService = inject(WishlistService);
 
   
   constructor(private _product:ProductService){
@@ -30,6 +32,7 @@ export class ProductsComponent implements OnInit , OnChanges {
   ngOnInit(): void {
     
     this.getAllProducts();
+    // this.wishlistService.setWishlistProductsIdsArr();
     // this.productsSearchService.searchQuery.subscribe((query)=>{
     //   this.searchProducts(query)
     // })

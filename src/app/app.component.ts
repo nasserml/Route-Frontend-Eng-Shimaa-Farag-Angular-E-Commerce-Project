@@ -7,6 +7,7 @@ import { CartService } from './shared/services/cart.service';
 import { error } from 'console';
 import { isPlatformBrowser } from '@angular/common';
 import { LoadingComponent } from "./layout/pages/loading/loading.component";
+import { WishlistService } from './shared/services/wishlist.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AppComponent  implements OnInit {
 
    loading:boolean = true;
   private _cart = inject(CartService);
+  private wishlistService = inject(WishlistService);
   private platformId= inject(PLATFORM_ID);
 
   constructor(private primengConfig:PrimeNGConfig){
@@ -46,6 +48,7 @@ export class AppComponent  implements OnInit {
     this.loading = false
     
     this.getCartItems();
+    this.wishlistService.setWishlistProductsIdsArr();
   }
 
 

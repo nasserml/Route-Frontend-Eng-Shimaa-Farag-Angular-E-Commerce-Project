@@ -4,6 +4,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { CartService } from '../../../shared/services/cart.service';
 import { FlowbiteService } from '../../../shared/services/flowbite.service';
+import { WishlistService } from '../../../shared/services/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,10 @@ export class NavbarComponent {
 
   isLogin:boolean = false;
   cartNumber:number = 0;
+  wishlistNumber:number = 0;
+
+  private wishlistService = inject(WishlistService);
+
   platFormId = inject(PLATFORM_ID);
 
   constructor(
@@ -46,6 +51,12 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
+
+    this.wishlistService.wishlistNumber.subscribe({
+      next: (response) => {
+        this.wishlistNumber = response;
+      }
+    })
 
     this.flowbiteService.loadFlowbite(flowbite => {
       console.log('Flowbite loaded' + flowbite);
