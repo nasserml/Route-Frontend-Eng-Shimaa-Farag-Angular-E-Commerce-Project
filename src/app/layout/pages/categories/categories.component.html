@@ -1,90 +1,3 @@
-<!-- @if(isLoading) {
-  <div class="flex justify-center items-center h-[65vh]">
-    <app-loading></app-loading>
-
-  </div>
-} @else {
-  
-  <div class="flex justify-center items-center">
-      <div class="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
-        <div class="flex flex-col jusitfy-center items-center space-y-10">
-          <div class="flex flex-col justify-center items-center ">
-            <h1 class="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-sky-500 dark:text-white">Shop By Category</h1>
-          </div>
-  
-        
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 md:gap-x-8 w-full">
-  
-              @for (category of categoriesArr; let i = $index;track $index) {
-  
-                  
-                @if((i+1)%4 == 1 )
-                {
-
-                  <div class="relative group flex justify-center items-center h-full w-full">
-                      <img class="object-center object-cover h-full w-full" [src]="category.image" [alt]="category.name" />
-                      <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-indigo-50">{{category.name}}</button>
-                      <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-                    </div>
-                  
-                }
-
-                <div class="flex flex-col space-y-4 md:space-y-8 mt-4 md:mt-0">
-
-                  @if((i+1)%4 == 2 ){
-                    <div class="relative group flex justify-center items-center h-full w-full">
-                      <img class="object-center object-cover h-full w-full" [src]="category.image" alt="shoe-image" />
-                      <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">{{category.name}}</button>
-                      <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-                    </div>
-    
-                  }
-    
-                  @if((i+1)%4 == 3 ){
-    
-                    <div class="relative group flex justify-center items-center h-full w-full">
-                      <img class="object-center object-cover h-full w-full" [src]="category.image" alt="watch-image" />
-                      <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">{{category.name}}</button>
-                      <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-                    </div>
-                  }
-                </div>
-
-                @if((i+1)%4 == 0 ){
-                  <div class="relative group justify-center items-center h-full w-full hidden lg:flex">
-                    <img class="object-center object-cover h-full w-full" [src]="category.image" alt="girl-image" />
-                    <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">{{category.name}}</button>
-                    <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-                  </div>
-                  
-                  
-                  <div class="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
-                    <img class="object-center object-cover h-full w-full hidden md:block" [src]="category.image" alt="girl-image" />
-                    <img class="object-center object-cover h-full w-full md:hidden" [src]="category.image" alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2" />
-                    <button class="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">{{category.name}}</button>
-                    <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-                  </div>
-                }
-  
-      
-                  
-      
-              }
-
-           
-
-            
-    
-           
-  
-          </div>
-
-          
-  
-        </div>
-      </div>
-    </div>
-} -->
 
 @if(isLoading) {
   <div class="flex justify-center items-center h-[65vh]">
@@ -161,14 +74,7 @@
     
             }
             
-          
-              <!-- image - start -->
-            
-              <!-- image - end -->
-    
-              <!-- image - start -->
-            
-              <!-- image - end -->
+         
     
               
               
