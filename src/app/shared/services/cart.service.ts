@@ -17,10 +17,10 @@ export class CartService implements ICartService {
   cartItemNumber: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private platFormId = inject(PLATFORM_ID);
 
-  // header:any = {
-  //   token: localStorage.getItem('userToken')
-  // }
-
+ // interceptor gate fe + be
+ // headers 
+ // error global
+ // loading screen
   constructor(
     private _http: HttpClient,
     private _loggingService: LoggingService,
@@ -48,39 +48,29 @@ export class CartService implements ICartService {
  
     return this._http.post(
       `${Environment.BASE_URL}cart`,
-      { productId: id },
-      { headers: this.headers }
+      { productId: id }
     );
   }
 
   deleteProductInCart(id: string): Observable<any> {
   
-    return this._http.delete(`${Environment.BASE_URL}cart/${id}`, {
-      headers: this.headers
-    });
+    return this._http.delete(`${Environment.BASE_URL}cart/${id}`);
   }
 
   getCartProduct(): Observable<any> {
-    return this._http.get(`${Environment.BASE_URL}cart`, {
-      headers: this.headers
-    });
+    return this._http.get(`${Environment.BASE_URL}cart`);
   }
 
   updateProductInCart(id: string, count: number): Observable<any> {
   
     return this._http.put(
       `${Environment.BASE_URL}cart/${id}`,
-      { count: count },
-      {
-        headers: this.headers
-      }
+      { count: count }
     );
   }
 
   clearUserCart(): Observable<any> {
     
-    return this._http.delete(`${Environment.BASE_URL}cart`, {
-      headers: this.headers
-    });
+    return this._http.delete(`${Environment.BASE_URL}cart`);
   }
 }
