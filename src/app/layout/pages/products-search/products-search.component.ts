@@ -1,27 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { ProductsComponent } from "../products/products.component";
 import { ProductsSearchService } from '../../../shared/services/products-search.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products-search',
   standalone: true,
-  imports: [ProductsComponent],
+  imports: [ProductsComponent, FormsModule],
   templateUrl: './products-search.component.html',
   styleUrl: './products-search.component.scss'
 })
 export class ProductsSearchComponent {
 
-  search!:string;
+  searchTerm:string ='';
 
-  // private productsSearchService=  inject(ProductsSearchService);
 
-  searchProducts(e:any):void {
-
-    this.search = e.target.value ;
-
-    // this.productsSearchService.setSearchQuery(e.target.value)
-    
-
-  }
 
 }

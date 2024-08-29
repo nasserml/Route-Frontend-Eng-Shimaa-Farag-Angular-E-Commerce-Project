@@ -7,7 +7,7 @@
     <section class="products-container">
         <section
             class="products-grid relative">
-            @for(product of productList; track product._id) {
+            @for(product of productList | filterProducts : searchTerm; track product._id) {
 
                 <app-product [product]="product" class="h-full"></app-product>
             }
