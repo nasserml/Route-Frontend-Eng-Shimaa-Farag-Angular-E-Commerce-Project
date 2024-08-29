@@ -8,6 +8,7 @@ import { error } from 'console';
 import { isPlatformBrowser } from '@angular/common';
 import { LoadingComponent } from "./layout/pages/loading/loading.component";
 import { WishlistService } from './shared/services/wishlist.service';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -30,7 +31,20 @@ export class AppComponent  implements OnInit {
     
   }
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+
+  if(isPlatformBrowser(this.platformId)) {
+    
+    if(localStorage.getItem('userToken')){
+
+      this.getCartItems();
+      this.wishlistService.setWishlistProductsIdsArr();
+    }
+
+
+    this.loading = false
+  } 
+
+  this.primengConfig.ripple = true;
     this.primengConfig.zIndex = {
       modal: 1100,    // dialog, sidebar
       overlay: 1000,  // dropdown, overlaypanel
@@ -43,26 +57,21 @@ export class AppComponent  implements OnInit {
       date: [FilterMatchMode.DATE_IS, FilterMatchMode.DATE_IS_NOT, FilterMatchMode.DATE_BEFORE, FilterMatchMode.DATE_AFTER]
   };
 
-  if(isPlatformBrowser(this.platformId)) {
-    
-    this.loading = false
-    
-    this.getCartItems();
-    this.wishlistService.setWishlistProductsIdsArr();
-  }
-
 
    
   }
 
   getCartItems():void {
+    
     this._cart.getCartProduct().subscribe({
       next:(res) =>{
         this._cart.cartItemNumber.next(res.numOfCartItems);
+        this.loading = false;
         
   
       },
       error:(error) => {
+        this.loading = false
         console.log(error)
       }
     })

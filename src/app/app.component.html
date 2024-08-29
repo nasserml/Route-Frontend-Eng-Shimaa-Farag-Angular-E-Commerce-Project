@@ -1,10 +1,10 @@
-@if(loading) {
+@if(loading == true) {
     <div class="absolute top-0 left-0 right-0 bottom-0 bg-white w-full flex justify-center items-center z-50">
         <app-loading></app-loading>
 
     </div>
 } 
-@if(!loading){ 
+@if(loading == false){ 
     
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>

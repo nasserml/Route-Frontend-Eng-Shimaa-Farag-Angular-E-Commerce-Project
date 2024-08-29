@@ -28,7 +28,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './public/assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export const appConfig: ApplicationConfig = {
@@ -42,7 +42,9 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule,
       NgxSpinnerModule,
       TranslateModule.forRoot({
-        defaultLanguage: 'en',loader: { provide: TranslateLoader, useFactory: HttpLoaderFactory, deps: [HttpClient] },
+        defaultLanguage: 'en',loader: { provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+           deps: [HttpClient] },
       })
     ),
     provideAnimations(),

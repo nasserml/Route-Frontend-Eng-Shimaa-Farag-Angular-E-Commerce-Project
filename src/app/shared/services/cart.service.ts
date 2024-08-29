@@ -26,7 +26,7 @@ export class CartService implements ICartService {
     private _loggingService: LoggingService,
     private _tokenService: TokenService
   ) {
-    if (isPlatformBrowser(this.platFormId)) {
+    if (isPlatformBrowser(this.platFormId ) && localStorage.getItem('userToken') ) {
       this.getCartProduct().subscribe({
         next: (res: CartData) => {
           this.cartItemNumber.next(res.numOfCartItems);
