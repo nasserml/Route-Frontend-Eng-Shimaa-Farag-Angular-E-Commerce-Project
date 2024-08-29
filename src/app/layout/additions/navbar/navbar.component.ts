@@ -5,11 +5,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { CartService } from '../../../shared/services/cart.service';
 import { FlowbiteService } from '../../../shared/services/flowbite.service';
 import { WishlistService } from '../../../shared/services/wishlist.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { MyTranslateService } from '../../../shared/services/my-translate.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink , RouterLinkActive],
+  imports: [RouterLink , RouterLinkActive, TranslateModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -20,6 +22,7 @@ export class NavbarComponent {
   wishlistNumber:number = 0;
 
   private wishlistService = inject(WishlistService);
+  private _lang = inject(MyTranslateService);
 
   platFormId = inject(PLATFORM_ID);
 
@@ -98,6 +101,11 @@ export class NavbarComponent {
     // localStorage.removeItem('userToken');
     // this._router.navigate(['/login']);
     // this._auth.userData.next(null);
+  }
+
+
+  changeLang(lang:string) {
+    this._lang.changeLang(lang);
   }
 
 }

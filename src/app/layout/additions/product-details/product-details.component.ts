@@ -28,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   productDetails!: ProductDetails;
 
   customOptions: OwlOptions = {
+    rtl: true,
     loop: true,
     mouseDrag: true,
     touchDrag: true,

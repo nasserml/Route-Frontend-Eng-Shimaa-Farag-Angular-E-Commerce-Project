@@ -39,6 +39,7 @@ export class CategorySliderComponent implements OnInit {
 
 
   customOptions: OwlOptions = {
+    rtl: true,
     loop: true,
     mouseDrag: true,
     touchDrag: true,
