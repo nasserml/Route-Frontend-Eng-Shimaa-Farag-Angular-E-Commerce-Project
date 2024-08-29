@@ -13,10 +13,11 @@ import { ProductProxyService } from '../../../shared/services/product-proxy.serv
 import { LoggingService } from '../../../shared/services/logging.service';
 import { Title } from '@angular/platform-browser';
 import { AddToWishlistButtonComponent } from "../../pages/add-to-wishlist-button/add-to-wishlist-button.component";
+import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent, LoadingComponent, AddToWishlistButtonComponent],
+  imports: [CarouselModule, AddToCartButtonComponent, ProductStarsComponent, ImagesProductComponent, LoadingComponent, AddToWishlistButtonComponent, CurrencyPipe,UpperCasePipe],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })

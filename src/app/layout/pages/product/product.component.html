@@ -11,16 +11,13 @@
 
 
         <h1 class="product-title">
-            {{ product.title }}
+            {{ product.title | uppercase }}
         </h1>
-        <h2 class="text-main-color-0aad0a"> {{product.category.name}} </h2>
+        <h2 class="text-main-color-0aad0a"> {{product.category.name | uppercase}} </h2>
         <p class="product-desc">
             {{ product.description }}
         </p>
-        <h2 class="font-semibold mb-5">{{ product.price.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        }) }}</h2>
+        <h2 class="font-semibold mb-5">{{ product.price | currency }}</h2>
 
     </div>
 

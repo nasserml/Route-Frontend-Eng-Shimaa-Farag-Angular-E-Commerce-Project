@@ -18,18 +18,12 @@
   
         <!-- Product Details -->
         <div class="w-full md:w-1/2 px-4">
-          <h2 class="product-title"> {{productDetails['title']}} </h2>
+          <h2 class="product-title"> {{productDetails['title'] | uppercase }} </h2>
           <p class="product-cat-name"> {{productDetails['category']['name']}} </p>
           <p class="product-brand-name"> {{productDetails['brand']['name']}} </p>
           <div class="mb-4">
-            <span class="product-price">${{productDetails['price'].toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-          })}}</span>
-            <span class="product-price-line">${{productDetails['price'].toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-          })}}</span>
+            <span class="product-price">{{productDetails['price'] | currency}}</span>
+            <span class="product-price-line">{{productDetails['price'] | currency}}</span>
           </div>
           <div class="flex items-center mb-4 ">
             <app-product-stars [ratingAverageStars]="productDetails.ratingsAverage"></app-product-stars>

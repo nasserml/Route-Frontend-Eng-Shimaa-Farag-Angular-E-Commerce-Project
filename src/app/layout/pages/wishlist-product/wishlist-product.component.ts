@@ -7,11 +7,12 @@ import { ToastrService } from 'ngx-toastr';
 import { ResponseAddToWishList } from '../../../shared/interface/response-add-to-wish-list';
 import { LoadingComponent } from "../loading/loading.component";
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-wishlist-product',
   standalone: true,
-  imports: [ProductStarsComponent, AddToCartButtonComponent, LoadingComponent, RouterLink],
+  imports: [ProductStarsComponent, AddToCartButtonComponent, LoadingComponent, RouterLink, UpperCasePipe, CurrencyPipe],
   templateUrl: './wishlist-product.component.html',
   styleUrl: './wishlist-product.component.scss'
 })

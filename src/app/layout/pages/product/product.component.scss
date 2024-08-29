@@ -3,7 +3,7 @@
 @layer components {
 
     .product-section {
-        @apply p-2 overflow-hidden bg-clip-border shadow-lg shadow-gray-300/40 rounded-xl bg-sky-50 py-5  text-center transform duration-500 hover:transform hover:scale-105 transition-all hover:-translate-y-2 cursor-pointer h-full flex flex-col justify-between
+        @apply p-2 overflow-hidden bg-clip-border shadow-lg shadow-gray-300/40 rounded-xl bg-[#F5F5F5] py-5  text-center transform duration-500 hover:transform hover:scale-105 transition-all hover:-translate-y-2 cursor-pointer h-full flex flex-col justify-between
     }
 
     .product-img {

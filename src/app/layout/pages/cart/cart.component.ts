@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { CurrencyPipe, isPlatformBrowser, UpperCasePipe } from '@angular/common';
 import { afterNextRender, afterRender, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from '../../../shared/services/cart.service';
 import { error } from 'console';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [LoadingComponent, RouterLink],
+  imports: [LoadingComponent, RouterLink, CurrencyPipe, UpperCasePipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

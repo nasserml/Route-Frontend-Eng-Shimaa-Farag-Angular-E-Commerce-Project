@@ -58,15 +58,12 @@
         
         
                             <div class="pro-data w-full max-w-sm ">
-                                <h5 class="prod-title">{{cartProduct.product.title}}
+                                <h5 class="prod-title">{{cartProduct.product.title | uppercase}}
                                 </h5>
                                 <p
                                     class="cat-name">
                                     {{cartProduct.product.category.name}}</p>
-                                <h6 class="prod-price-per-unit">{{cartProduct.price.toLocaleString('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                  })}}</h6>
+                                <h6 class="prod-price-per-unit">{{cartProduct.price | currency }}</h6>
                             </div>
                         </div>
                         <div
@@ -116,10 +113,7 @@
                             </div>
                             <h6
                                 class="total-price">
-                                {{(cartProduct.price * cartProduct.count).toLocaleString('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD',
-                                  })}}</h6>
+                                {{(cartProduct.price * cartProduct.count) | currency}}</h6>
                         </div>
                     </div>
                 
@@ -135,7 +129,7 @@
             <div class="bg-gray-50 rounded-xl p-6 w-full mb-8 max-lg:max-w-xl max-lg:mx-auto">
                 <div class="flex items-center justify-between w-full mb-6">
                     <p class="sub-total">Sub Total</p>
-                    <h6 class="font-semzibold text-xl leading-8 text-gray-900">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
+                    <h6 class="font-semzibold text-xl leading-8 text-gray-900">{{cartItems['totalCartPrice'] | currency}}</h6>
                 </div>
                 <div class="flex items-center justify-between w-full pb-6 border-b border-gray-200">
                     <p class="delivery-total">Delivery Charge</p>
@@ -143,7 +137,7 @@
                 </div>
                 <div class="flex items-center justify-between w-full py-6">
                     <p class="total-txt">Total</p>
-                    <h6 class="all-price">{{cartItems['totalCartPrice'].toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}</h6>
+                    <h6 class="all-price">{{cartItems['totalCartPrice']|currency}}</h6>
                 </div>
             </div>
     

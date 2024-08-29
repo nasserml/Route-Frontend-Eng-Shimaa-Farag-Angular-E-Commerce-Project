@@ -45,11 +45,7 @@ export class CartService implements ICartService {
   }
 
   addProductToCart(id: string): Observable<any> {
-    console.log(this.headers);
-    console.log({
-      token: localStorage.getItem('userToken')!,
-    });
-    // this._loggingService.logInfo(`Add product to cart with id ${id}`);
+ 
     return this._http.post(
       `${Environment.BASE_URL}cart`,
       { productId: id },
@@ -58,23 +54,20 @@ export class CartService implements ICartService {
   }
 
   deleteProductInCart(id: string): Observable<any> {
-    // this._loggingService.logInfo(`Delete product from cart with id ${id}`);
+  
     return this._http.delete(`${Environment.BASE_URL}cart/${id}`, {
       headers: this.headers
     });
   }
 
   getCartProduct(): Observable<any> {
-    // this._loggingService.logInfo(`Get cart products`);
     return this._http.get(`${Environment.BASE_URL}cart`, {
       headers: this.headers
     });
   }
 
   updateProductInCart(id: string, count: number): Observable<any> {
-    // this._loggingService.logInfo(
-    //   `Update product in cart with id ${id} and count ${count}`
-    // );
+  
     return this._http.put(
       `${Environment.BASE_URL}cart/${id}`,
       { count: count },
@@ -85,7 +78,7 @@ export class CartService implements ICartService {
   }
 
   clearUserCart(): Observable<any> {
-    // this._loggingService.logInfo(`Clear user cart`);
+    
     return this._http.delete(`${Environment.BASE_URL}cart`, {
       headers: this.headers
     });
