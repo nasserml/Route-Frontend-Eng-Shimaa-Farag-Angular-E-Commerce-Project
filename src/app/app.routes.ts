@@ -8,7 +8,7 @@ export const routes: Routes = [
     {path:'home', loadComponent: ()=>import('./layout/pages/home/home.component').then(c=>c.HomeComponent), canActivate:[autGuard], title:'Home'},
     {path:'cart', loadComponent: ()=>import('./layout/pages/cart/cart.component').then(c=>c.CartComponent), canActivate:[autGuard], title:'Cart'},
     {path:'brands', loadComponent: ()=>import('./layout/pages/brand/brand.component').then(c=>c.BrandComponent), canActivate:[autGuard], title:'Brands' },
-    {path:'products',loadComponent:()=>import('./layout/pages/products/products.component').then(c=>c.ProductsComponent), canActivate:[autGuard], title:'Products'},
+    {path:'products',loadComponent:()=>import('./layout/pages/products-search/products-search.component').then(c=>c.ProductsSearchComponent), canActivate:[autGuard], title:'Products'},
     {path:'productDetails/:productId', loadComponent: ()=>import('./layout/additions/product-details/product-details.component').then(c=>c.ProductDetailsComponent), canActivate:[autGuard]},
     {path:'categories', loadComponent: ()=>import('./layout/pages/categories/categories.component').then(c=>c.CategoriesComponent), canActivate:[autGuard], title:'Categories'},
     {path:'checkout', loadComponent: ()=>import('./layout/pages/checkout/checkout.component').then(c=>c.CheckoutComponent), canActivate:[autGuard, cartGuard], title:'Check Out'},

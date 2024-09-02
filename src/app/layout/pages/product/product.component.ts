@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input, InputSignal } from '@angular/core';
 import { Product } from '../../../shared/interface/product';
 import { ProductStarsComponent } from "../../additions/product-stars/product-stars.component";
 import { RouterLink } from '@angular/router';
@@ -16,5 +16,13 @@ import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 export class ProductComponent {
 
   @Input() product!: Product;
+
+  // productSignal:InputSignal<Product| undefined> = input(); n
+  // gOnInit(): void {
+
+  //   console.log(this.productSignal());
+    
+  // }
+   
 
 }

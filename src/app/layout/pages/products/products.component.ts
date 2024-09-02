@@ -16,7 +16,10 @@ import { FilterProductsPipe } from '../../../shared/pipe/filter-products.pipe';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit  {
-  productList:Product[]= []
+  productList:Product[]= [];
+  // productList:WritableSignal<Product[]>= signal([])
+  // productList.set();
+  
 
 
   @Input() searchTerm: string='';
