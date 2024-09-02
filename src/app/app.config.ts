@@ -26,6 +26,7 @@ import { headerTokenInterceptor } from './shared/interceptor/header/header-token
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { errorInterceptor } from './shared/interceptor/error/error.interceptor';
 
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +37,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes /*,withHashLocation()*/, withViewTransitions()),
     provideClientHydration(),
-    provideHttpClient(withFetch(), withInterceptors([headerTokenInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([headerTokenInterceptor, errorInterceptor])),
     importProvidersFrom(
       RouterModule,
       BrowserAnimationsModule,
