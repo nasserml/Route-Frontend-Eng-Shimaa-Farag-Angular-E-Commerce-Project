@@ -17,6 +17,7 @@ export const routes: Routes = [
     {path:'login', loadComponent: ()=>import('./layout/pages/login/login.component').then(c=>c.LoginComponent),title:'Login', canActivate: [logoutGuard]},
     {path:'forget-password', loadComponent: ()=>import('./layout/pages/forget-password/forget-password.component').then(c=>c.ForgetPasswordComponent),title:'Forget Password', canActivate: [logoutGuard]},
     {path:'register', loadComponent: ()=>import('./layout/pages/register/register.component').then(c=>c.RegisterComponent), title:'Register', canActivate:[logoutGuard]},
+    {path:'settings', loadChildren:()=>import('./layout/pages/modules/settings/settings.module').then(c=> c.SettingsModule) },
     {path:'**', loadComponent: ()=>import('./layout/additions/notfound/notfound.component').then(c=>c.NotfoundComponent), title:'Not Found'},
  
 ];
